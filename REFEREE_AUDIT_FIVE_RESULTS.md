@@ -1,8 +1,8 @@
 # Referee-style audit of the five frontier results
 
-**Audit date:** 21 July 2026  
+**Audit date:** 21 July 2026
 **Scope:** correctness, hidden hypotheses, independent checks, failure modes,
-and literature boundary.  
+and literature boundary.
 **Status:** internal adversarial review, not external peer review.
 
 ## Overall verdict
