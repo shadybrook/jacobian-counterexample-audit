@@ -42,3 +42,8 @@ Status date: 21 July 2026.
     mechanism. It does not rule out source modifications, logarithmic
     compactifications, or changing the map before attempting a two-dimensional
     construction.
+15. The five-direction memorandum contains new proofs and exact checks, but it
+    does not assert historical priority. Its finite-field `S_n` law is
+    asymptotic at reductions retaining maximal geometric monodromy, not an
+    exact count for every prime. Its cusp escape formula explicitly excludes
+    the degenerate leading-cubic case, which requires further Newton steps.
