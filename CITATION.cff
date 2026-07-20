@@ -3,10 +3,10 @@ message: "Please cite this versioned audit, and separately credit the original a
 title: "An exact audit of an announced three-dimensional Keller map"
 type: report
 version: 0.2.0
-date-released: 2026-07-20
+date-released: 2026-07-21
 authors:
   - name: "Independent audit contributors"
-repository-code: "REPOSITORY_URL_PENDING"
+repository-code: "https://github.com/shadybrook/jacobian-counterexample-audit"
 license: CC-BY-4.0
 abstract: >-
   An AI-assisted but independently checked technical audit of the polynomial

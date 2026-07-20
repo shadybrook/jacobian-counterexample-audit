@@ -1,5 +1,7 @@
 # Exact audit of an announced three-dimensional Keller map
 
+Public repository: <https://github.com/shadybrook/jacobian-counterexample-audit>
+
 This repository independently checks and analyzes the polynomial map announced
 by Levent Alpoge on 20 July 2026. The core calculation is exact:
 

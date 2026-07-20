@@ -1,6 +1,6 @@
 # Audit against the original publication request
 
-Status date: 20 July 2026.
+Status date: 21 July 2026.
 
 | Requested outcome | Status before this revision | Status now | Evidence |
 |---|---|---|---|
@@ -13,14 +13,14 @@ Status date: 20 July 2026.
 | Provide reproducible scripts and tests | Fulfilled | Expanded from five to eight test groups | `src/verify.py`, `tests/test_map.py`, CI workflow |
 | Provide Markdown and LaTeX/PDF | Fulfilled | Fulfilled and visually rechecked after revision | `paper/`, `output/pdf/` |
 | Make the work usable by people and machine indexing | Mostly fulfilled | Strengthened | README, `CITATION.cff`, licenses, CI, consequence ledger |
-| Publish a new public GitHub repository | Not fulfilled: invalid saved token | Pending user reauthentication | `gh auth login -h github.com` required |
-| Open a draft PR if a new repository cannot be created | Not applicable without a selected target repository | Not required if public repository creation succeeds | GitHub step pending |
+| Publish a new public GitHub repository | Not fulfilled: invalid saved token | Fulfilled | <https://github.com/shadybrook/jacobian-counterexample-audit> |
+| Open a draft PR if a new repository cannot be created | Not applicable without a selected target repository | Not required; the preferred new public repository was created | public repository on `main` |
 | Guarantee that the mathematics is accepted by experts | Not possible to guarantee | Explicitly not claimed | peer review and independent expert review remain external steps |
 
-## Remaining external step
+## Publication result
 
-The local repository is complete and committed. GitHub publication requires a
-valid authenticated account. Once `gh auth login -h github.com` succeeds, the
-intended action is to create `jacobian-counterexample-audit` as a **public**
-repository, push `main`, set an accurate description and topics, and verify the
-public files and Actions run.
+The repository was published publicly at
+<https://github.com/shadybrook/jacobian-counterexample-audit>. The local
+`main` branch tracks `origin/main`. Repository visibility, pushed files, and
+the automated verification workflow are checked as part of the publication
+handoff.
