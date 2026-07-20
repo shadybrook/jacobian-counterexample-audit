@@ -13,4 +13,6 @@ abstract: >-
   map announced by Levent Alpoge on 20 July 2026, with exact verification,
   fiber and monodromy calculations, geometric consequences, explicit Weyl and
   Poisson lifts, an equivariant quotient theorem, inverse-flow incompleteness,
-  exact finite-field statistics, literature context, and limitations.
+  an explicit PGL(2) model of the ordered-root space, generic escape exponents,
+  maximal monodromy for the all-degree weighted lifts, exact finite-field
+  statistics, literature context, and limitations.

@@ -13,4 +13,9 @@ paper/*.log
 paper/*.out
 paper/*.run.xml
 paper/*.toc
+output/pdf/*.aux
+output/pdf/*.fdb_latexmk
+output/pdf/*.fls
+output/pdf/*.log
+output/pdf/*.out
 tmp/

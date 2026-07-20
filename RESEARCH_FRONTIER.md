@@ -45,6 +45,96 @@ complex map omits a curve, but over a large finite field roughly one third of
 all rational targets have no rational preimage; most acquire preimages only
 after extending the field.
 
+### 4. The Galois closure is an explicit complement in PGL(2)
+
+The full ordered-root cover, equivalently the off-diagonal collision variety,
+is
+
+```text
+U = PGL(2) \ H,
+H = V(a^2 d + 2abc + 2abd + b^2 c).
+```
+
+The divisor is smooth and has the product description
+
+```text
+H is isomorphic to (A^1 \ {0,-1}) x G_m.
+```
+
+Consequently `[U]=(L-1)(L^2+2)` in the Grothendieck ring. Over every finite
+extension of a finite field of characteristic other than two or three,
+`#U(F_{q^m})=(q^m-1)(q^(2m)+2)`, giving an explicit zeta function. This
+completes the proposed arithmetic collision-variety target for the cubic map.
+
+### 5. Quantitative escape exponents
+
+For a target arc transverse to the smooth discriminant, the two disappearing
+inverse branches have Puiseux escape order `x ~ epsilon^(-1/2)`. At a generic
+arc through the cuspidal omitted curve, all three branches escape with order
+`x ~ epsilon^(-2/3)`. The exponents follow from exact double- and triple-root
+normal forms and the reconstruction formula `x=2/P'(t)`.
+
+For target lines these are movable algebraic singularities of the
+inverse-Jacobian flows. Tangential directions can have different exponents and
+remain to be classified.
+
+### 6. Maximal monodromy in every generic degree
+
+For any characteristic-zero polynomial `R` of degree `n`, the two-parameter
+polynomial
+
+```text
+R(w) - P*w + Q
+```
+
+has Galois group `S_n` over `C(P,Q)`. The proof uses the tangent-line map
+`w -> (R'(w), R(w)-wR'(w))`, the identity `dB=-w dA`, and the standard
+monodromy of a Morse polynomial.
+
+Applied to the contemporaneous one-variable weighted lifts, this proves that
+their dimension-three Keller counterexamples have full `S_n` monodromy in
+every generic degree `n >= 3`. The all-degree construction belongs to the
+cited public note; the uniform monodromy deduction is proved in our paper.
+
+### 7. Exact ordinary-degree growth in the one-variable family
+
+If the seed polynomial has degree `d >= 2`, the weighted lift has component
+degrees
+
+```text
+(5d-3, 5d-4, 4)
+```
+
+and generic degree `d+1`. Thus its total degree is `5n-8` at generic degree
+`n`. The announced map is forced to have total degree seven inside this
+particular construction. This is a restricted minimality statement only; it
+does not eliminate degrees four, five, or six in the full Keller problem.
+
+### 8. Restricted classification of the completion torsor
+
+Torsors under `E=O(-1)+O(-2)` are classified by
+`H^1(P^1,E)=0+k`. Bundle automorphisms act transitively on nonzero classes.
+Therefore the completion is, up to an automorphism of `E`, the unique
+nontrivial `E`-torsor over `P^1`.
+
+This classifies the affine-plane bundle under the exact bundle hypothesis. It
+does not yet classify the finite map to `A^3`, the boundary embedding, or all
+smooth completions with complement `A^3`.
+
+### 9. A sharp no-go theorem for filling the displayed plane slice
+
+For fixed nonzero first output, let `(Q_p,R_p)` be the etale map on
+`A^2 \ {xy=-1}`. Every nonconstant element of `k[Q_p,R_p]` has a pole along
+the missing hyperbola. Equivalently,
+
+```text
+k[Q_p,R_p] intersection k[x,y] = k.
+```
+
+Thus no polynomial postcomposition, including no polynomial target
+automorphism, can make this slice extend across the hyperbola. Any successful
+plane mechanism must change more than the target coordinates of this slice.
+
 ## Investigated ideas that are not new theorems
 
 ### Finite completion in general
@@ -85,6 +175,11 @@ polynomials of weights `(-2,-1,1)`. A classification could explain whether the
 announced construction is forced inside a natural equivariant category and
 could generate all such counterexamples.
 
+The one-variable subfamily now has known maximal monodromy in every degree;
+the remaining problem is to determine whether every equivariant example is
+polynomially equivalent to such a lift or whether genuinely different
+monodromy and boundary types occur.
+
 ### B. A boundary-complement classification theorem
 
 Classify finite smooth threefolds `I -> A^3` of degree three having a
@@ -96,17 +191,23 @@ I \ D is isomorphic to A^3,  and  D is isomorphic to A^2.
 
 Even a theorem under the additional affine-plane-torsor hypothesis would go
 beyond the automatic Zariski-Main completion and could isolate the true
-geometric mechanism.
+geometric mechanism. The underlying `O(-1)+O(-2)` torsor is now classified;
+the remaining content lies in the finite map and its distinguished divisor.
 
-### C. Galois-closure geometry
+### C. Topology of the explicit Galois-closure complement
 
-The ordered-root cover is an open subset of the configuration space of three
-ordered points on `P^1`, hence an open subset of `PGL_2`. Determine the deleted
-divisor explicitly, its fundamental group, Picard group, and compactification.
-This may turn the `S_3` statement into a complete topological model of every
-inverse branch and every escape to infinity.
+The ordered-root cover and deleted divisor are now explicit. Determine the
+fundamental group, Picard group, cohomology ring, and a normal-crossings
+compactification of
 
-### D. Arithmetic collision varieties
+```text
+PGL(2) \ ((A^1 \ {0,-1}) x G_m).
+```
+
+This may turn the algebraic `S_3` statement into a complete topological model
+of every inverse branch and every escape to infinity.
+
+### D. Higher-degree arithmetic collision varieties
 
 The off-diagonal fiber product
 
@@ -114,19 +215,18 @@ The off-diagonal fiber product
 (A^3 x_F A^3) \ diagonal
 ```
 
-is the ordered-root/Galois-closure space over the regular locus. The
-finite-field theorem implies that its number of rational points is
-`(q-1)(q^2+2)` outside characteristics two and three. Identify its exact
-geometric decomposition and motivic class, then extend the computation to the
-higher-generic-degree weighted lifts.
+is the ordered-root/Galois-closure space over the regular locus. For the cubic
+map its decomposition, motivic class, and extension-field zeta function are
+now proved. Extend the computation to higher-generic-degree weighted lifts,
+where the ordered-root space is an open subset of the configuration space of
+`d` points on `P^1` and the omitted coefficient defines a new divisor.
 
-### E. Quantitative flow singularities
+### E. Full classification of flow singularities
 
-Every constant direction is incomplete. Classify the pole order and escape
-divisor of the lifted flow for a generic target line. A general theorem
-relating flow singularities to intersection multiplicities with the
-nonproperness divisor could connect polynomial ODEs directly to the finite
-completion.
+The generic transverse exponents `1/2` and `2/3` are proved. Classify tangent
+lines and higher-contact arcs. A general theorem should express the Puiseux
+exponents of lifted flows in terms of contact order with the discriminant and
+root multiplicity in the finite completion.
 
 ### F. Minimal ordinary degree
 
@@ -140,9 +240,10 @@ alone cannot prove minimality.
 
 For fixed nonzero first coordinate, the remaining map is etale on
 `A^2 \ {xy=-1}`. Formulate a logarithmic or valuation-theoretic obstruction to
-filling the deleted hyperbola while preserving a unit Jacobian. A theorem must
-distinguish a mere failure of the displayed formulas to extend from a genuine
-obstruction applying to a class of modifications.
+filling the deleted hyperbola while preserving a unit Jacobian. Polynomial
+postcomposition has now been ruled out completely. The remaining problem is
+to study source modifications, logarithmic fillings, or deformations of the
+map itself and to prove an obstruction for one of those broader classes.
 
 ### H. Optimized cubic-homogeneous and Druzkowski witnesses
 

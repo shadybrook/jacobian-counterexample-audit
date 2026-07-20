@@ -42,10 +42,16 @@ three. We derive two inverse cubics, prove generic degree three and full
 $S_3$ monodromy, classify the complex fibers, determine the image and
 nonproperness set, describe a finite smooth completion, and construct direct
 nonautomorphic endomorphisms of the third Weyl and Poisson algebras. We also
+identify the ordered-root cover and collision variety with an explicit
+complement in $\operatorname{PGL}_2$, compute its motivic class and zeta
+function, and determine generic square-root and cube-root escape exponents.
+We also
 exhibit a weighted scaling symmetry and collision family, a commuting
 divergence-free polynomial frame with no complete constant direction, a
 nonproper smooth fibration with jumping component count, an equivariant
-quotient square law, exact finite-field fiber statistics, and exact real volume
+quotient square law, a polynomial-filling obstruction for the plane slice,
+maximal monodromy and degree growth for all one-variable weighted lifts, exact
+finite-field fiber statistics, and exact real volume
 formulas. We separate proved consequences from open directions and
 priority-sensitive claims. Exact symbolic scripts accompany this note. This is
 an independent, non-peer-reviewed audit and makes no claim of discovery or
@@ -314,11 +320,92 @@ the ramification formula give $K_I\cong\mathcal O(1)\cong\mathcal O(D)$, so
 $D$ generates the divisor class group. Thus $I$ is smooth affine but not
 factorial, whereas $I\setminus D\cong\A^3$ is factorial.
 
+\begin{proposition}[Uniqueness of the nontrivial torsor]
+Up to an automorphism of
+$E=\mathcal O(-1)\oplus\mathcal O(-2)$, the completion
+$I\to\mathbb P^1$ is the unique nontrivial $E$-torsor.
+\end{proposition}
+\begin{proof}
+The torsor classes form
+\[
+H^1(\mathbb P^1,E)=H^1(\mathcal O(-1))\oplus H^1(\mathcal O(-2))
+\cong0\oplus\C.
+\]
+The absence of a section makes the class of $I$ nonzero, and scalar
+automorphisms of the $\mathcal O(-2)$ summand act transitively on nonzero
+classes.
+\end{proof}
+This classifies the affine-plane torsor under the stated bundle hypothesis,
+not the finite morphism, ramification divisor, or all possible completions.
+
 The existence of some finite completion is classical: Zariski's Main Theorem
 factors every separated quasi-finite morphism as an open immersion followed by
 a finite morphism \cite{stacks}. The special content here is the explicit boundary,
 ramification, normalization, and torsor geometry, not the abstract existence
 of a completion.
+
+\subsection{The ordered-root cover and collision variety}
+
+Let $Y=\A^3\setminus\Sigma$ and let $\widetilde Y\to Y$ order the three
+roots of $\Phi$. Ordered triples of distinct points of $\mathbb P^1$ form
+$\operatorname{PGL}_2$. A matrix
+$g=\left(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\right)$ sends the
+standard ordered triple to its two columns and their sum. The corresponding
+binary cubic is
+\[
+(cS-aT)(dS-bT)((c+d)S-(a+b)T),
+\]
+whose $ST^2$ coefficient is
+\[
+E=a^2d+2abc+2abd+b^2c.
+\]
+
+\begin{theorem}[Explicit Galois closure and collision variety]
+Over a field of characteristic different from $2,3$, put
+$H=V(E)\cap\operatorname{PGL}_2$ and
+$U=\operatorname{PGL}_2\setminus H$. Then
+\[
+\widetilde Y\cong U,\qquad Y\cong U/S_3,
+\]
+and
+\[
+H\cong(\A^1\setminus\{0,-1\})\times\mathbb G_m.
+\]
+The off-diagonal collision variety
+\[
+\mathcal C=\{(x,x'):F(x)=F(x'),\ x\ne x'\}
+\]
+is isomorphic to $U$, and in the Grothendieck ring
+\[
+[\mathcal C]=[U]=(\mathbb L-1)(\mathbb L^2+2).
+\]
+\end{theorem}
+\begin{proof}
+The coefficient calculation identifies the ordered-root cover with $U$.
+Moreover $E_c=b(2a+b)$ and $E_d=a(a+2b)$ cannot vanish simultaneously at
+an invertible matrix in characteristic not three, so $H$ is smooth.
+Invertibility on $H$ forces $ab(a+b)\ne0$. Normalize $b=1$ and write $t=a$.
+Every point is uniquely represented by
+\[
+\begin{pmatrix}t&1\\ \lambda t(t+2)&-\lambda(2t+1)\end{pmatrix},
+\qquad t\ne0,-1,\quad\lambda\ne0,
+\]
+whose determinant is $-3\lambda t(t+1)$. This proves the product model.
+An ordered pair of distinct preimages exists only over $Y$ and determines
+the third root, proving $\mathcal C\cong U$. Finally
+$[\operatorname{PGL}_2]=\mathbb L^3-\mathbb L$ and
+$[H]=(\mathbb L-2)(\mathbb L-1)$, which gives the class formula.
+\end{proof}
+
+For every $m\ge1$ over $\mathbb F_q$ of characteristic different from
+$2,3$ this model gives
+\[
+\#U(\mathbb F_{q^m})=(q^m-1)(q^{2m}+2),
+\qquad
+Z(U/\mathbb F_q,T)=
+\frac{(1-q^2T)(1-T)^2}{(1-q^3T)(1-qT)^2}.
+\]
+In particular $\#U(\mathbb F_q)=6N_3(q)$.
 
 \section{Direct Dixmier and Poisson counterexamples}
 
@@ -403,6 +490,44 @@ It escapes at the finite time $t=0$. Thus the exact coframe defines a flat
 algebraic affine structure whose developing map is $F$, but every nonzero
 constant direction in its dual frame is incomplete.
 
+\begin{theorem}[Generic escape exponents]
+Let $\gamma(\epsilon)=(p(\epsilon),q(\epsilon),r(\epsilon))$ be an analytic
+target arc and
+\[
+K_\epsilon(T)=r(\epsilon)T^3-2T^2+q(\epsilon)T-2p(\epsilon).
+\]
+At a smooth point of $\Sigma$, let $t_0$ be the double root and assume
+$\partial_\epsilon K_\epsilon(t_0)|_0\ne0$. The two escaping branches have
+\[
+t-t_0\asymp\epsilon^{1/2},\quad x\asymp\epsilon^{-1/2},
+\quad y\to t_0,\quad z=O(\epsilon^{1/2}).
+\]
+At a point of $\Gamma$ with the same transversality condition at its triple
+root, all three branches have
+\[
+t-t_0\asymp\epsilon^{1/3},\quad x\asymp\epsilon^{-2/3},
+\quad y\to t_0,\quad z=O(\epsilon^{2/3}).
+\]
+\end{theorem}
+\begin{proof}
+On the boundary the exact normal form is
+\[
+K_0(T)=(T-t_0)^2(r_0T+2r_0t_0-2).
+\]
+Off the triple-root curve, Weierstrass preparation gives square-root
+splitting. On $\Gamma$, $3r_0t_0=2$ and
+$K_0(T)=r_0(T-t_0)^3$, giving cube-root splitting. The reconstruction is
+\[
+\rho=K_\epsilon'(t),\quad x=2/\rho,\quad y=t-\rho/2,
+\quad z=5\rho^2/4-3t\rho/2-r\rho^3/8.
+\]
+Thus $\rho$ has orders $1/2$ and $2/3$, respectively, proving the result.
+\end{proof}
+
+For target lines these are movable algebraic singularities of the
+inverse-Jacobian flows. Tangent arcs can have different exponents and are not
+classified here.
+
 \section{Real fibers, a plane slice, and research directions}
 
 For real targets, the sign of $\Delta$ gives three real preimages when
@@ -433,6 +558,39 @@ R_p=\frac{x(-px^2+x^2y^2+3xy+2)}{(1+xy)^3},
 with relative Jacobian $-2/(1+xy)^3$. This is an etale map from a punctured
 affine plane, not a counterexample on $\A^2$; the nonconstant unit $1+xy$
 shows $X\not\cong\A^2$.
+
+\begin{theorem}[Polynomial postcomposition cannot fill the slice]
+For fixed $p\ne0$, inside $k(x,y)$ one has
+\[
+k[Q_p,R_p]\cap k[x,y]=k.
+\]
+More strongly, every nonconstant polynomial in $Q_p,R_p$ has a pole along
+$D=V(1+xy)$.
+\end{theorem}
+\begin{proof}
+Put $s=1+xy$ and
+$S_p=R_p+Q_p^3/(27p^2)$. Then
+$k[Q_p,R_p]=k[Q_p,S_p]$. In the coordinates $(x,s)$, exact expansion gives
+\[
+Q_p=s/x-1/x+3px/s,
+\]
+and
+\[
+(sQ_p)|_D=3px,qquad
+(sS_p)|_D=(6px^2+1)/(3px).
+\]
+Their ratio $2/(3p)+1/(9p^2x^2)$ is nonconstant on
+$D\cong\mathbb G_m$. If $f(Q_p,S_p)$ has degree $m>0$ and top homogeneous
+part $f_m$, its coefficient at order $s^{-m}$ is
+\[
+f_m\left(3px,(6px^2+1)/(3px)\right).
+\]
+It cannot vanish identically because the displayed ratio defines a
+nonconstant map $D\to\mathbb P^1$. Hence $f$ has pole order exactly $m$.
+\end{proof}
+
+Thus no polynomial target-coordinate change fills this slice. The theorem
+does not rule out source modifications or changing the map before filling.
 
 There is a second nonproperness diagnostic. Put
 \[
@@ -488,6 +646,57 @@ N_0+N_1+N_3=q^3,\qquad N_1+3N_3=q^3,
 which gives $N_0=2N_3$ and the stated formulas.
 \end{proof}
 
+\begin{theorem}[Maximal monodromy for one-variable weighted lifts]
+Let $k$ be algebraically closed of characteristic zero, let
+$R(w)\in k[w]$ have degree $n\ge2$, and let $P,Q$ be algebraically
+independent. Then $R(w)-Pw+Q$ has Galois group $S_n$ over $k(P,Q)$.
+Consequently every member of the contemporaneous one-variable weighted-lift
+construction with generic degree $n$ has full $S_n$ geometric monodromy.
+\end{theorem}
+\begin{proof}
+Over $\overline{k(P)}$, put $g_P(w)=R(w)-Pw$. Its critical points solve
+$R'(w)=P$ and are simple. Their critical values are generically distinct:
+the tangent-line map
+\[
+w\longmapsto(A,B)=(R'(w),R(w)-wR'(w))
+\]
+is birational onto its image because $dB=-w\,dA$, which recovers
+$w=-dB/dA$ in the function field $k(A,B)$. Thus $g_P$ is a Morse
+polynomial. Its connected degree-$n$ cover has a transposition around every
+finite critical value. These transpositions generate a transitive group, and
+a transitive group generated by transpositions is $S_n$. The geometric group
+is therefore $S_n$, forcing the group over $k(P,Q)$ to be $S_n$ as well.
+\end{proof}
+
+The abstract argument is classical Morse-polynomial monodromy; no novelty is
+claimed for it. Its application settles the monodromy of the newly public
+all-degree family, assuming the inverse equations recorded in that source.
+
+\begin{proposition}[Degree growth in the one-variable family]
+If the seed polynomial $p(w)$ has degree $d\ge2$ and the $x^2z$ coefficient
+of $\gamma$ is nonzero, the component degrees of the weighted lift are
+\[
+(5d-3,5d-4,4),
+\]
+while its generic degree is $d+1$. Thus ordinary total degree is $5n-8$ at
+generic degree $n$.
+\end{proposition}
+\begin{proof}
+The top terms of $u$ and $\gamma$ are $xy$ and $bx^2z$. Since
+$q'(w)=wp'(w)/c$, the top contributions to the first two coordinates are
+\[
+u^{d+1}\gamma^{d-1}/x^2,
+\qquad u^d\gamma^{d-1}/x.
+\]
+Their leading exponent vectors in $(x,y,z)$ are
+$(3d-3,d+1,d-1)$ and $(3d-3,d,d-1)$. Lower powers cannot cancel these
+terms. The third coordinate $x\gamma$ has degree four.
+\end{proof}
+
+For $d=2$ this gives $(7,6,4)$. Hence degree seven is forced inside this
+particular one-variable construction, not among all Keller maps or all
+equivariant Keller maps.
+
 The immediate research program is now sharply delimited:
 \begin{enumerate}
 \item Determine whether total-degree $4$, $5$, or $6$ counterexamples exist in
@@ -496,9 +705,10 @@ dimension three. Degree at most three is known \cite{wright1993,vistoli}.
 the genuine stable reductions \cite{bcw}; a naive circuit lift is invalid.
 \item Classify the affine-plane torsors and ramification complements producing
 $\A^3$.
-\item Classify weighted-lift families and their possible monodromy groups. A
-same-day note constructs every generic degree at least three \cite{gallagher};
-we do not claim priority for that family.
+\item Classify weighted-lift families up to polynomial equivalence. A same-day
+note constructs every generic degree at least three \cite{gallagher}; the
+theorem above gives full $S_n$ monodromy for those one-variable lifts, but we
+do not claim priority for the family itself.
 \item Seek explicit small witnesses for related failed conjectures. Published
 implications give failure of the Mathieu conjecture for $SU(3)$ and
 existential failure in some finite dimension of the Gaussian Moments,

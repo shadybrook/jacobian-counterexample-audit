@@ -1,22 +1,61 @@
-# Exact audit of an announced three-dimensional Keller map
+# Geometry and monodromy of a three-dimensional Keller counterexample
 
 Public repository: <https://github.com/shadybrook/jacobian-counterexample-audit>
 
-This repository independently checks and analyzes the polynomial map announced
-by Levent Alpoge on 20 July 2026. The core calculation is exact:
+This repository develops a reproducible structural study of the polynomial map
+announced by Levent Alpoge on 20 July 2026. It begins with an independent exact
+certificate:
 
 \[
 \det DF=-2,
 \]
 
 and three distinct rational points have the same image. Under the standard
-definition, this is a counterexample to the Jacobian Conjecture in dimension
-three.
+definition, this disproves the Jacobian Conjecture in dimension three. The
+main purpose of the repository, however, is to understand the mathematics the
+example opens up: its fibers, Galois closure, monodromy, behavior at infinity,
+inverse-Jacobian dynamics, equivariant quotient, and obstruction to descending
+the construction to the affine plane.
 
 This is an **independent working note**, not a peer-reviewed publication and
-not a claim of priority. The original map must be credited to the announcement
-linked below. Several structural observations also appeared in same-day public
-notes; the paper records those overlaps explicitly.
+not a blanket claim of priority. The original map must be credited to the
+announcement linked below. Several structural observations also appeared in
+same-day public notes; the paper records those overlaps explicitly.
+
+## Strongest results developed here
+
+The paper proves, with exact symbolic checks where applicable:
+
+- an explicit ordered-root/Galois-closure model as the complement of a smooth
+  hypersurface in `PGL_2`, including its product structure, Grothendieck class,
+  and finite-field point counts;
+- full symmetric-group monodromy `S_n` for every generic degree in the
+  contemporaneous one-variable weighted-lift family, via a general theorem for
+  `R(w)-Pw+Q` when `R` is a Morse polynomial;
+- exact escape exponents at infinity: two inverse branches escape like
+  `epsilon^(-1/2)` across a smooth discriminant point, while three escape like
+  `epsilon^(-2/3)` at the omitted cusp;
+- a strong plane-slice obstruction:
+  `k[Q_p,R_p] \cap k[x,y]=k`, so no nonconstant polynomial in the two outputs
+  fills across the deleted hyperbola, even after polynomial target
+  postcomposition;
+- a general square law for the Jacobian of weighted quotients, together with
+  an explicit collapsed critical divisor in this example;
+- commuting, divergence-free inverse-Jacobian vector fields that form a global
+  algebraic frame, plus an explicit finite-time escaping trajectory and a
+  completeness criterion relevant to invertibility;
+- a finite smooth completion with boundary `A^2`, its affine-bundle/torsor
+  description, and uniqueness of the nontrivial torsor up to bundle
+  automorphism;
+- ordinary-degree growth formulas for the all-degree family, exact real and
+  finite-field fiber statistics, and a consequences ledger separating proved
+  implications from open questions.
+
+These are proof-level results about this example and its associated families,
+not a claim of a second breakthrough comparable to the counterexample itself.
+Some may be independently useful or new, but historical priority requires
+expert literature review. `LIMITATIONS.md` and the paper state the known
+overlaps and non-claims.
 
 ## Contents
 
@@ -47,13 +86,9 @@ make test
 The verifier uses symbolic expansion and exact rational arithmetic. No
 floating-point equality is used for a theorem-level assertion.
 
-The revision additionally certifies weighted equivariance, an infinite
-rational collision family, the ramified two-dimensional weighted quotient,
-discriminant scaling, divergence-free inverse-Jacobian vector fields, and the
-factorization controlling the jumping fiber of the first coordinate. It now
-also certifies the general equivariant quotient square law, an explicit
-finite-time escaping inverse-Jacobian trajectory, and finite-field fiber-count
-formulas with small-field regression checks.
+The verification suite covers the core certificate and the machine-checkable
+identities used by the structural arguments. The paper distinguishes these
+computer-checked identities from arguments proved in prose.
 
 To build the PDF, install a LaTeX distribution containing `latexmk`,
 `pdflatex`, `amsmath`, `amsthm`, `hyperref`, and `booktabs`, then run:

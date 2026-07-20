@@ -30,8 +30,28 @@ def test_discriminant_and_boundary():
     verify.verify_discriminant_and_boundary()
 
 
+def test_ordered_root_space():
+    verify.verify_ordered_root_space()
+
+
+def test_boundary_escape_normal_forms():
+    verify.verify_boundary_escape_normal_forms()
+
+
+def test_tangent_map_identity():
+    verify.verify_tangent_map_identity()
+
+
+def test_weighted_lift_degree_growth():
+    verify.verify_weighted_lift_degree_growth()
+
+
 def test_nonproper_path_and_slice():
     verify.verify_nonproper_path_and_slice()
+
+
+def test_slice_pole_normal_form():
+    verify.verify_slice_pole_normal_form()
 
 
 def test_inverse_jacobian_fields():

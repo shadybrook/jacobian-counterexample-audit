@@ -32,3 +32,13 @@ Status date: 21 July 2026.
     computationally for small prime fields. They do not by themselves provide
     a new characteristic-zero counterexample or settle arithmetic questions
     about all higher-degree lift families.
+12. The `PGL_2` complement theorem and escape-exponent theorem are exact new
+    deductions in this revision, but no historical-priority claim is made
+    until specialists and a broader literature search have reviewed them.
+13. The escape exponents assume a target arc transverse in the stated
+    polynomial direction. Tangent arcs and higher-contact degenerations can
+    have different Puiseux exponents and are not classified here.
+14. The plane-slice theorem rules out polynomial postcomposition as a filling
+    mechanism. It does not rule out source modifications, logarithmic
+    compactifications, or changing the map before attempting a two-dimensional
+    construction.

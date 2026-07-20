@@ -62,6 +62,32 @@ being surrounded by avoidable overclaims.
 15. Over every finite field of odd characteristic, rational fibers have only
     `0`, `1`, or `3` points. Exact formulas count each type; their asymptotic
     proportions are `1/3`, `1/2`, and `1/6`, matching the `S_3` cycle types.
+16. The full ordered-root cover and off-diagonal collision variety are both
+    the complement of a smooth divisor `H` in `PGL_2`, where
+    `H ~= (A^1 \ {0,-1}) x G_m`; the complement has Grothendieck class
+    `(L-1)(L^2+2)`.
+17. Transverse target arcs have exact escape exponents: two branches escape
+    with order `epsilon^(-1/2)` at the smooth discriminant, while all three
+    escape with order `epsilon^(-2/3)` at the omitted cuspidal curve.
+18. The ordered-root space satisfies
+    `#U(F_{q^m})=(q^m-1)(q^(2m)+2)` and has an explicit zeta function outside
+    characteristics two and three.
+19. Every one-variable weighted lift with inverse polynomial
+    `R(w)-P*w+Q` of degree `n` has full `S_n` geometric monodromy. Therefore
+    the contemporaneous all-degree construction supplies maximal-monodromy
+    Keller counterexamples in dimension three for every generic degree
+    `n >= 3`.
+20. Within that one-variable construction, generic degree `n` has component
+    degrees `(5n-8, 5n-9, 4)`. Hence the announced degree-seven example is
+    minimal inside this particular family, but not proved minimal among all
+    Keller maps.
+21. Up to automorphisms of `O(-1)+O(-2)`, the finite completion is the unique
+    nontrivial torsor under that bundle. This does not classify its finite map
+    to affine three-space or its boundary embedding.
+22. On every nonzero fixed-first-coordinate slice,
+    `k[Q_p,R_p] intersection k[x,y]=k`: every nonconstant polynomial in the
+    two outputs has a pole along the deleted hyperbola. Hence polynomial
+    target coordinate changes cannot fill the slice.
 
 ## C. Consequences via established external theorems
 

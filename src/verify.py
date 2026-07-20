@@ -179,6 +179,88 @@ def verify_discriminant_and_boundary():
     zero((3 * q * r - 4).subs(triple))
 
 
+def verify_ordered_root_space():
+    """Exact certificates for the ordered-root/Galois-closure model."""
+
+    a, b, c, d, S, TT, tau, lam = symbols("a b c d S TT tau lam")
+    product = (c * S - a * TT) * (d * S - b * TT) * (
+        (c + d) * S - (a + b) * TT
+    )
+    obstruction = a**2 * d + 2 * a * b * c + 2 * a * b * d + b**2 * c
+    assert Poly(product, S, TT).coeff_monomial(S * TT**2) == obstruction
+
+    # The obstruction divisor H in PGL_2 has the explicit product chart
+    # (A^1 \ {0,-1}) x G_m.  We normalize b=1.
+    parameterization = {
+        a: tau,
+        b: 1,
+        c: lam * tau * (tau + 2),
+        d: -lam * (2 * tau + 1),
+    }
+    zero(obstruction.subs(parameterization))
+    determinant = a * d - b * c
+    zero(determinant.subs(parameterization) + 3 * lam * tau * (tau + 1))
+
+    # On H with b=1, lambda=-det/(3*tau*(tau+1)) reconstructs c,d.
+    normalized_obstruction = obstruction.subs({a: tau, b: 1})
+    normalized_determinant = determinant.subs({a: tau, b: 1})
+    inverse_lam = -normalized_determinant / (3 * tau * (tau + 1))
+    for expression in (
+        c - inverse_lam * tau * (tau + 2),
+        d + inverse_lam * (2 * tau + 1),
+    ):
+        numerator = factor(expression).as_numer_denom()[0]
+        assert factor(Poly(numerator, d).rem(Poly(normalized_obstruction, d)).as_expr()) == 0
+
+
+def verify_boundary_escape_normal_forms():
+    """Certificates for the double- and triple-root escape exponents."""
+
+    boundary_root, boundary_r = symbols("boundary_root boundary_r", nonzero=True)
+    boundary_p = boundary_root**2 - boundary_r * boundary_root**3
+    boundary_q = 4 * boundary_root - 3 * boundary_r * boundary_root**2
+    cubic = boundary_r * T**3 - 2 * T**2 + boundary_q * T - 2 * boundary_p
+    zero(
+        cubic
+        - (T - boundary_root) ** 2
+        * (boundary_r * T + 2 * boundary_r * boundary_root - 2)
+    )
+
+    triple_r = 2 / (3 * boundary_root)
+    zero(
+        cubic.subs(boundary_r, triple_r)
+        - triple_r * (T - boundary_root) ** 3
+    )
+
+
+def verify_tangent_map_identity():
+    """Regression certificate for the all-degree maximal-monodromy proof."""
+
+    w = symbols("w")
+    coeffs = symbols("a0:7")
+    polynomial = sum(coeffs[i] * w**i for i in range(7))
+    slope = polynomial.diff(w)
+    intercept = polynomial - w * slope
+    zero(intercept.diff(w) + w * slope.diff(w))
+
+
+def verify_weighted_lift_degree_growth():
+    """Check the leading monomials behind degrees (5d-3,5d-4,4)."""
+
+    lift_degree = symbols("lift_degree", integer=True, positive=True)
+    # u has leading term xy (ordinary degree 2) and gamma has leading term
+    # x^2 z (ordinary degree 3).  After the forced x^-2 and x^-1 factors,
+    # the top terms have the following exponent vectors.
+    first_exponents = Matrix(
+        [3 * lift_degree - 3, lift_degree + 1, lift_degree - 1]
+    )
+    second_exponents = Matrix(
+        [3 * lift_degree - 3, lift_degree, lift_degree - 1]
+    )
+    assert sum(first_exponents) == 5 * lift_degree - 3
+    assert sum(second_exponents) == 5 * lift_degree - 4
+
+
 def verify_nonproper_path_and_slice():
     lam = symbols("lam", nonzero=True)
     path = {x: lam, y: -1 / lam, z: 5 / lam**2}
@@ -190,6 +272,34 @@ def verify_nonproper_path_and_slice():
     Rf = x * (-fixed * x**2 + x**2 * y**2 + 3 * x * y + 2) / A**3
     relative = Matrix([Qf, Rf]).jacobian((x, y)).det()
     zero(relative + 2 / A**3)
+
+
+def verify_slice_pole_normal_form():
+    """Certificates for the polynomial postcomposition filling obstruction."""
+
+    divisor_parameter, fixed = symbols("divisor_parameter fixed", nonzero=True)
+    slice_y = (divisor_parameter - 1) / x
+    quotient_q = (
+        3 * fixed * x + x * slice_y**2 + slice_y
+    ) / divisor_parameter
+    quotient_r = x * (
+        -fixed * x**2 + x**2 * slice_y**2 + 3 * x * slice_y + 2
+    ) / divisor_parameter**3
+    expected_q = (
+        divisor_parameter / x
+        - 1 / x
+        + 3 * fixed * x / divisor_parameter
+    )
+    zero(quotient_q - expected_q)
+
+    reduced_r = quotient_r + quotient_q**3 / (27 * fixed**2)
+    q_residue = factor((divisor_parameter * quotient_q).subs(divisor_parameter, 0))
+    s_residue = factor(
+        factor(divisor_parameter * reduced_r).subs(divisor_parameter, 0)
+    )
+    zero(q_residue - 3 * fixed * x)
+    zero(s_residue - (6 * fixed * x**2 + 1) / (3 * fixed * x))
+    assert factor((s_residue / q_residue).diff(x)) != 0
 
 
 def verify_inverse_jacobian_fields():
@@ -271,7 +381,12 @@ def run_all():
     verify_general_equivariant_quotient_identity()
     verify_inverse_cubics()
     verify_discriminant_and_boundary()
+    verify_ordered_root_space()
+    verify_boundary_escape_normal_forms()
+    verify_tangent_map_identity()
+    verify_weighted_lift_degree_growth()
     verify_nonproper_path_and_slice()
+    verify_slice_pole_normal_form()
     verify_inverse_jacobian_fields()
     verify_finite_field_fiber_counts()
     verify_first_coordinate_factorization()

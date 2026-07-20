@@ -19,11 +19,17 @@ We give two inverse-cubic descriptions, prove that the generic function-field
 degree is three, compute the $S_3$ Galois closure, classify all complex fibers,
 determine the image and nonproperness locus, and describe a finite smooth
 completion whose boundary is the normalization of the discriminant surface. We
+identify the full ordered-root cover and off-diagonal collision variety with
+the complement of an explicit smooth divisor in $\operatorname{PGL}_2$, compute
+its Grothendieck class and extension-field point counts, and determine generic
+square-root and cube-root escape exponents at the discriminant. We
 also exhibit a weighted scaling symmetry and an infinite rational collision
 family, direct same-rank nonautomorphic endomorphisms of the third Weyl and
 Poisson algebras, a commuting divergence-free polynomial frame with no
 complete constant direction, a nonproper smooth fibration with jumping
-component count, an equivariant square law for quotient Jacobians, exact
+component count, an equivariant square law for quotient Jacobians, a sharp
+polynomial-filling obstruction for the plane slice, maximal monodromy and
+degree growth for the all-degree weighted lifts, exact
 finite-field fiber statistics, and exact real volume formulas. Finally, we audit broader claims made in
 early discussions, distinguishing exact consequences from research directions
 and explicitly recording priority uncertainty. Every polynomial identity used
@@ -491,6 +497,29 @@ formula identifies $K_I$ with $D$. Thus $D$ generates the divisor class
 group. The smooth affine threefold $I$ is not factorial, although
 $I\setminus D\cong\mathbb A^3$ is factorial.
 
+### Proposition 5.1 (uniqueness of the nontrivial torsor)
+
+Up to an automorphism of
+$E=\mathcal O(-1)\oplus\mathcal O(-2)$, the completion $I\to\mathbb P^1$
+is the unique nontrivial $E$-torsor.
+
+**Proof.** Isomorphism classes of $E$-torsors are classified by
+
+$$
+H^1(\mathbb P^1,E)
+=H^1(\mathbb P^1,\mathcal O(-1))
+\oplus H^1(\mathbb P^1,\mathcal O(-2))
+\cong 0\oplus k.
+$$
+
+The completion has no section, so its class is nonzero. Scalar automorphisms
+of the $\mathcal O(-2)$ summand act transitively on the nonzero elements of
+this one-dimensional space. $\square$
+
+This classifies the affine-plane torsor itself under the stated bundle
+hypothesis. It does not classify the finite morphism $I\to\mathbb A^3$, its
+ramification divisor, or all smooth completions with affine-space complement.
+
 The broad completion principle itself is not new. Zariski's Main Theorem says
 that every separated quasi-finite morphism factors as an open immersion into a
 finite morphism. Since every Keller map is etale and hence quasi-finite, any
@@ -500,6 +529,125 @@ that the completion, its boundary, its ramification, and its torsor structure
 are all completely explicit. Thus a genuinely new classification result would
 need hypotheses that force or classify this particular boundary geometry; the
 mere existence of a finite completion is classical.
+
+### 5.1. The ordered-root cover and the complete collision variety
+
+The statement that the monodromy group is $S_3$ can be sharpened to an
+explicit model of its Galois closure.  Let
+
+$$
+Y=\mathbb A^3\setminus\Sigma
+$$
+
+and let $\widetilde Y\to Y$ be the cover whose points are targets together
+with an ordering of the three roots of $\Phi$.  Ordered triples of distinct
+points on $\mathbb P^1$ form $\operatorname{PGL}_2$: a matrix
+
+$$
+g=\begin{pmatrix}a&b\\c&d\end{pmatrix}
+$$
+
+sends the ordered triple $([1:0],[0:1],[1:1])$ to the three columns
+$[a:c]$, $[b:d]$, and $[a+b:c+d]$.  The binary cubic with those roots is,
+up to a scalar,
+
+$$
+(cS-aT)(dS-bT)((c+d)S-(a+b)T).
+$$
+
+Its $ST^2$ coefficient is
+
+$$
+E(a,b,c,d)=a^2d+2abc+2abd+b^2c.
+$$
+
+Our inverse cubics are exactly the binary cubics whose $ST^2$ coefficient is
+$2$.  Thus an ordered triple determines one and only one target precisely
+when $E\ne0$.
+
+### Theorem 5.2 (explicit Galois closure and collision variety)
+
+Over a field of characteristic different from $2$ and $3$, put
+
+$$
+H=V(E)\cap\operatorname{PGL}_2,
+\qquad U=\operatorname{PGL}_2\setminus H.
+$$
+
+Then:
+
+1. $\widetilde Y\cong U$, equivariantly for the free $S_3$-action that
+   permutes the ordered roots, and $Y\cong U/S_3$.
+2. The divisor $H$ is smooth and
+   $$
+   H\cong(\mathbb A^1\setminus\{0,-1\})\times\mathbb G_m.
+   $$
+3. The full off-diagonal collision variety
+   $$
+   \mathcal C=\{(x,x')\in\mathbb A^3\times\mathbb A^3:
+   F(x)=F(x'),\ x\ne x'\}
+   $$
+   is isomorphic to $U$.
+4. In the Grothendieck ring of varieties, with $\mathbb L=[\mathbb A^1]$,
+   $$
+   [\mathcal C]=[U]=(\mathbb L-1)(\mathbb L^2+2).
+   $$
+
+**Proof.** The preceding coefficient calculation proves the first statement.
+For the second, the two partial derivatives
+
+$$
+E_c=b(2a+b),\qquad E_d=a(a+2b)
+$$
+
+cannot vanish simultaneously at an invertible matrix in characteristic not
+three; hence $H$ is smooth.  On $H$, invertibility forces
+$ab(a+b)\ne0$.  Normalize $b=1$ and write $t=a/b$.  Every point of $H$ is
+uniquely represented by
+
+$$
+\begin{pmatrix}
+t&1\\
+\lambda t(t+2)&-\lambda(2t+1)
+\end{pmatrix},qquad
+t\ne0,-1,quad\lambda\ne0,
+$$
+
+whose determinant is $-3\lambda t(t+1)$.  This gives the displayed product
+isomorphism; before normalization the inverse parameters are
+$t=a/b$ and $\lambda=-\det(g)/(3t(t+1)b^2)$.
+
+By Theorem 4.1 a complex fiber has more than one point exactly over $Y$, and
+there it has three.  An ordered pair of distinct preimages determines an
+ordered pair of roots, hence the third root and a full ordering.  This proves
+$\mathcal C\cong U$.  Finally
+
+$$
+[\operatorname{PGL}_2]=\mathbb L^3-\mathbb L,qquad
+[H]=(\mathbb L-2)(\mathbb L-1),
+$$
+
+and subtraction gives the formula. $\square$
+
+### Corollary 5.3 (zeta function of the ordered-root space)
+
+For every finite field $\mathbb F_q$ of characteristic different from $2,3$
+and every $m\ge1$,
+
+$$
+\#U(\mathbb F_{q^m})=(q^m-1)(q^{2m}+2).
+$$
+
+Consequently
+
+$$
+Z(U/\mathbb F_q,T)=
+\frac{(1-q^2T)(1-T)^2}{(1-q^3T)(1-qT)^2}.
+$$
+
+In particular $\#U(\mathbb F_q)=6N_3(q)$, recovering the three-preimage
+count in Theorem 8.1 from the geometry of the Galois closure rather than by
+root-subset enumeration.
 
 ## 6. Direct rank-three Dixmier and Poisson consequences
 
@@ -634,6 +782,72 @@ $\mathbb A^3$ whose developing map is $F$, but that structure is incomplete.
 This translates the obstruction at infinity into failure of every nonzero
 constant direction in the dual polynomial frame to be complete.
 
+### Theorem 6.3 (generic escape exponents)
+
+Let $\gamma(\epsilon)=(p(\epsilon),q(\epsilon),r(\epsilon))$ be an analytic
+target arc, and put
+
+$$
+K_\epsilon(T)=r(\epsilon)T^3-2T^2+q(\epsilon)T-2p(\epsilon).
+$$
+
+Suppose first that $\gamma(0)$ is a smooth point of $\Sigma$ and $t_0$ is
+the corresponding double root.  If
+
+$$
+\partial_\epsilon K_\epsilon(t_0)|_{\epsilon=0}\ne0,
+$$
+
+then the two inverse branches that escape through the boundary have Puiseux
+asymptotics
+
+$$
+t-t_0\asymp\epsilon^{1/2},\qquad
+x\asymp\epsilon^{-1/2},\qquad
+y\longrightarrow t_0,\qquad z=O(\epsilon^{1/2}).
+$$
+
+If instead $\gamma(0)\in\Gamma$ and the same transversality condition holds
+at its triple root $t_0$, all three branches escape and
+
+$$
+t-t_0\asymp\epsilon^{1/3},\qquad
+x\asymp\epsilon^{-2/3},\qquad
+y\longrightarrow t_0,\qquad z=O(\epsilon^{2/3}).
+$$
+
+Here $\asymp$ means a nonzero leading Puiseux coefficient; the branches use
+the two square roots or three cube roots, respectively.
+
+**Proof.** On the boundary parametrized in Section 5, exact factorization is
+
+$$
+K_0(T)=(T-t_0)^2\bigl(r_0T+2r_0t_0-2\bigr).
+$$
+
+Off the triple-root curve the last factor is nonzero at $t_0$.  Newton's
+polygon (equivalently the analytic Weierstrass preparation theorem) and the
+stated transversality give $t-t_0\asymp\epsilon^{1/2}$.  On $\Gamma$ one has
+$3r_0t_0=2$, so the factorization becomes
+$K_0(T)=r_0(T-t_0)^3$ and gives the cube-root behavior.
+
+The reconstruction identities from Section 3 are
+
+$$
+\rho=K_\epsilon'(t),\qquad
+x=\frac2\rho,qquad y=t-\frac\rho2,qquad
+z=\frac54\rho^2-\frac32t\rho-\frac{r\rho^3}{8}.
+$$
+
+At a split double root $\rho\asymp\epsilon^{1/2}$; at a split triple root
+$\rho\asymp\epsilon^{2/3}$.  Substitution proves the formulas. $\square$
+
+For a target line $\gamma(\epsilon)=y_0+\epsilon a$, these are singularity
+exponents of the integral curves of $\delta_a$.  Thus the incomplete
+polynomial flows generically develop algebraic square-root singularities at
+the smooth discriminant and cube-root singularities at its cuspidal edge.
+Tangent arcs can have different exponents and are not covered by the theorem.
+
 ## 7. Real fibers and a two-dimensional slice
 
 For real targets, the sign of the cubic discriminant counts real simple roots:
@@ -704,6 +918,64 @@ $\mathbb A^2$. The nonconstant unit $1+xy$ proves
 $X\not\cong\mathbb A^2$. The calculation isolates a concrete obstruction for
 attempts to descend the mechanism to dimension two: one would need to fill the
 deleted hyperbola without destroying the unit-Jacobian condition.
+
+### Theorem 7.1 (polynomial postcomposition cannot fill the slice)
+
+Fix $p\ne0$ and regard $Q_p,R_p$ as rational functions on
+$\mathbb A^2$. Then
+
+$$
+k[Q_p,R_p]\cap k[x,y]=k
+$$
+
+inside $k(x,y)$. More strongly, every nonconstant polynomial in $Q_p,R_p$
+has a pole along the deleted divisor $D=V(1+xy)$.
+
+**Proof.** Put $s=1+xy$, use $(x,s)$ near the generic point of $D$, and set
+
+$$
+S_p=R_p+\frac{Q_p^3}{27p^2}.
+$$
+
+The triangular change preserves the output ring:
+$k[Q_p,R_p]=k[Q_p,S_p]$. Exact expansion with $y=(s-1)/x$ gives
+
+$$
+Q_p=\frac{s}{x}-\frac1x+\frac{3px}{s},
+$$
+
+and the leading residues along $s=0$ are
+
+$$
+(sQ_p)|_D=3px,
+\qquad
+(sS_p)|_D=\frac{6px^2+1}{3px}.
+$$
+
+Their ratio
+
+$$
+\frac{(sS_p)|_D}{(sQ_p)|_D}
+=\frac{2}{3p}+\frac{1}{9p^2x^2}
+$$
+
+is nonconstant on $D\cong\mathbb G_m$. Let $f(Q_p,S_p)$ have total degree
+$m>0$ and top homogeneous part $f_m$. Its coefficient at order $s^{-m}$ is
+
+$$
+f_m\left(3px,\frac{6px^2+1}{3px}\right).
+$$
+
+This cannot vanish identically: the corresponding map
+$D\to\mathbb P^1$ is nonconstant, whereas a nonzero homogeneous polynomial
+vanishes at only finitely many points of $\mathbb P^1$. Hence the pole order
+of $f$ is exactly $m$, proving the claim. $\square$
+
+Therefore no polynomial change of the two target coordinates—and in fact no
+nonconstant polynomial observable of them—extends across the missing
+hyperbola. This is a genuine obstruction for the displayed slice. It does not
+exclude a construction that changes the source, the target algebra, or the
+map itself before filling.
 
 The first coordinate itself gives another nonproperness diagnostic. Put
 
@@ -810,6 +1082,95 @@ Therefore $N_0=2N_3$, and the remaining formulas follow. The verifier
 brute-force checks the distributions over $\mathbb F_3,\mathbb F_5$, and
 $\mathbb F_7$. $\square$
 
+### Theorem 8.2 (maximal monodromy for one-variable weighted lifts)
+
+Let $k$ be an algebraically closed field of characteristic zero, let
+$R(w)\in k[w]$ have degree $n\ge2$, and let $P,Q$ be algebraically
+independent. Then
+
+$$
+R(w)-Pw+Q
+$$
+
+has Galois group $S_n$ over $k(P,Q)$.
+
+Consequently, every member of the contemporaneous one-variable weighted-lift
+construction whose inverse equation has degree $n$ has full $S_n$ geometric
+monodromy. In particular, the publicly described counterexamples of every
+generic degree $n\ge3$ can all be chosen with maximal symmetric monodromy.
+
+**Proof.** Work first over the algebraic closure of $k(P)$. Put
+
+$$
+g_P(w)=R(w)-Pw.
+$$
+
+Its critical points solve $R'(w)=P$. They are simple because a common root of
+$R'(w)-P$ and $R''(w)$ would force the transcendental $P$ to equal a constant.
+Their critical values are generically distinct. Indeed, the tangent-line map
+
+$$
+w\longmapsto\bigl(A(w),B(w)\bigr)
+=\bigl(R'(w),R(w)-wR'(w)\bigr)
+$$
+
+is birational onto its image: $dB=-w\,dA$, so in the one-variable function
+field $k(A,B)$ one recovers $w=-dB/dA$. Therefore distinct generic points in
+a fiber of $A$ have distinct $B$-values. Hence $g_P$ is a Morse polynomial.
+
+The connected degree-$n$ cover $g_P:\mathbb P^1\to\mathbb P^1$ has a simple
+branch point at each finite critical value, so the corresponding local
+monodromies are transpositions. They generate a transitive group. A transitive
+permutation group generated by transpositions is $S_n$ (the graph whose edges
+are those transpositions is connected). Thus the geometric Galois group over
+$\overline{k(P)}(Q)$ is $S_n$, and the group over $k(P,Q)$, which contains
+the geometric group and is contained in $S_n$, is also $S_n$. $\square$
+
+This theorem is a classical Morse-polynomial monodromy argument; novelty is
+not claimed for the abstract statement. Its role here is to settle uniformly
+the monodromy question for the newly public weighted-lift family, assuming the
+inverse equations recorded in that source.
+
+### Proposition 8.3 (ordinary degree growth inside the weighted-lift family)
+
+In the same one-variable construction, suppose $p(w)$ has degree $d\ge2$
+and the coefficient of $x^2z$ in $\gamma$ is nonzero. Then the three
+component degrees are exactly
+
+$$
+(5d-3,\ 5d-4,\ 4),
+$$
+
+while the generic fiber degree is $d+1$. Equivalently, the ordinary total
+degree is $5n-8$ for generic degree $n=d+1$.
+
+**Proof.** Write $u=1+xy$, let $\gamma$ have ordinary top term
+$b x^2z$, and put $w=u\gamma$. If the leading term of $p$ is $a_dw^d$,
+then the relation $q'(w)=w p'(w)/c$ makes the leading term of $q$ a nonzero
+multiple of $w^{d+1}$. The top contributions to the first two lifted
+coordinates are therefore
+
+$$
+\frac{u^{d+1}\gamma^{d-1}}{x^2},
+\qquad
+\frac{u^d\gamma^{d-1}}x.
+$$
+
+Their leading monomials have exponent vectors
+
+$$
+(3d-3,d+1,d-1),qquad(3d-3,d,d-1)
+$$
+
+in $(x,y,z)$, hence degrees $5d-3$ and $5d-4$. Lower powers of $w$ have
+strictly smaller degree and cannot cancel them. The third coordinate
+$x\gamma$ has degree four. $\square$
+
+For $d=2$ this gives $(7,6,4)$, exactly the announced map. Thus degree seven
+is forced within this particular one-variable weighted-lift construction. It
+does not prove minimality among all three-dimensional Keller maps, or even
+among all equivariant Keller maps.
+
 ## 9. Audit of the eight proposed research directions
 
 1. **Lower degree in dimension three.** The total degree here is seven.
@@ -827,8 +1188,9 @@ $\mathbb F_7$. $\square$
 5. **Infinite families.** A contemporaneous public weighted-lift note gives
    maps in fixed dimension three of every generic degree $n\ge3$. Its
    construction is independently consistent with the determinant identity,
-   but priority belongs to that public note unless earlier work is found. A
-   classification remains open.
+   but priority belongs to that public note unless earlier work is found.
+   Theorem 8.2 proves that every member has full $S_n$ monodromy. A
+   classification up to polynomial equivalence remains open.
 6. **Cubic-homogeneous and Druzkowski reduction.** Bass-Connell-Wright and
    Druzkowski reduction theorems guarantee counterexamples in special cubic
    form after stabilization. This audit does not give an optimized explicit
@@ -839,7 +1201,8 @@ $\mathbb F_7$. $\square$
 8. **Dimension two.** Not settled. Section 7 gives a near-example on
    $\mathbb A^2\setminus\{xy=-1\}$, which may be a useful geometric test case.
 
-The weighted symmetry, collision orbit, quotient square law, divergence-free
+The weighted symmetry, collision orbit, quotient square law, explicit
+ordered-root space, collision-variety class, generic escape exponents, divergence-free
 inverse frame, total directional incompleteness, jumping component count,
 finite-field distribution, and real volume formulas were added as
 independently proved deductions. We do not assert historical priority for them
@@ -882,13 +1245,18 @@ The most concrete next problems are:
 10. study reductions modulo primes through the $S_3$ cubic, including fiber
     statistics beyond Theorem 8.1, extension-field zeta functions, and
     bad-reduction behavior.
+11. determine whether the product-complement model
+    $U=\operatorname{PGL}_2\setminus
+    ((\mathbb A^1\setminus\{0,-1\})\times\mathbb G_m)$ admits a useful
+    compactification whose boundary intersection complex controls all lifted
+    flow singularities.
 
 ## 11. What is proved, what is sourced, and what is not claimed
 
 The determinant, collision, weighted quotient, inverse identities,
-discriminants, boundary parametrization, nonproper path, relative slice
+discriminants, boundary parametrization, ordered-root divisor, nonproper path, relative slice
 Jacobian, equivariant quotient square law, finite-field regression counts,
-and commuting inverse
+boundary-root factorizations, and commuting inverse
 Jacobian vector fields are exact symbolic identities tested in this repository.
 The fiber and completion theorems then follow by the proofs given above. The
 classical reductions and implications are literature-dependent and are cited in
