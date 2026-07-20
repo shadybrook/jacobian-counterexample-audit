@@ -28,7 +28,7 @@
 \title{An Exact Audit of an Announced\\Three-Dimensional Keller Map}
 \author{Independent audit contributors\\
 \small AI-assisted, user-directed working note; maintainer attribution pending}
-\date{20 July 2026}
+\date{Revised 21 July 2026}
 
 \begin{document}
 \maketitle
@@ -43,8 +43,9 @@ $S_3$ monodromy, classify the complex fibers, determine the image and
 nonproperness set, describe a finite smooth completion, and construct direct
 nonautomorphic endomorphisms of the third Weyl and Poisson algebras. We also
 exhibit a weighted scaling symmetry and collision family, a commuting
-divergence-free polynomial frame that cannot be algebraically complete, a
-nonproper smooth fibration with jumping component count, and exact real volume
+divergence-free polynomial frame with no complete constant direction, a
+nonproper smooth fibration with jumping component count, an equivariant
+quotient square law, exact finite-field fiber statistics, and exact real volume
 formulas. We separate proved consequences from open directions and
 priority-sensitive claims. Exact symbolic scripts accompany this note. This is
 an independent, non-peer-reviewed audit and makes no claim of discovery or
@@ -135,6 +136,32 @@ The distinct points $(0,0)$ and $(-3/2,13/2)$ both map to the quotient origin;
 indeed the whole critical line $h=0$ maps there. Thus the quotient retains a
 shadow of noninjectivity but introduces ramification. It is not a plane Keller
 counterexample, and the formula pinpoints why this natural reduction fails.
+
+\begin{theorem}[Equivariant quotient square law]\label{thm:squarelaw}
+Let $G=(A,B,C):\A^3\to\A^3$ be equivariant for source weights
+$(1,-1,-2)$ and target weights $(-2,-1,1)$, and suppose $\det DG=c\in\C^*$.
+With $u=xy$, $v=x^2z$, $\alpha=AC^2$, and $\beta=BC$, write
+$C=xh(u,v)$. Then the induced quotient map satisfies
+\[
+\det D\bar G=c\,h(u,v)^2.
+\]
+Thus a nonconstant $C/x$ forces a critical divisor in the quotient.
+\end{theorem}
+\begin{proof}
+For the infinitesimal orbit fields $\xi=(x,-y,-2z)$ and
+$\eta=(-2A,-B,C)$, direct exterior algebra gives
+\[
+du\wedge dv=x^2\iota_\xi(dx\wedge dy\wedge dz),\qquad
+d\alpha\wedge d\beta=C^2\iota_\eta(dA\wedge dB\wedge dC).
+\]
+Equivariance gives $DG(\xi)=\eta\circ G$, and the constant Jacobian pulls the
+target volume form back to $c$ times the source volume form. Pullback of the
+second identity and comparison with the first gives
+$\det D\bar G=c(C/x)^2=ch^2$.
+\end{proof}
+
+This is a theorem for the displayed weight pattern, not for arbitrary
+quotients or every possible descent to dimension two.
 
 \section{Inverse cubics and generic degree}
 
@@ -287,6 +314,12 @@ the ramification formula give $K_I\cong\mathcal O(1)\cong\mathcal O(D)$, so
 $D$ generates the divisor class group. Thus $I$ is smooth affine but not
 factorial, whereas $I\setminus D\cong\A^3$ is factorial.
 
+The existence of some finite completion is classical: Zariski's Main Theorem
+factors every separated quasi-finite morphism as an open immersion followed by
+a finite morphism \cite{stacks}. The special content here is the explicit boundary,
+ramification, normalization, and torsor geometry, not the abstract existence
+of a completion.
+
 \section{Direct Dixmier and Poisson counterexamples}
 
 Let $J=DF$ and $B=J^{-1}=-\tfrac12\operatorname{adj}(J)$. Define
@@ -328,17 +361,47 @@ matrix and are checked directly by the verifier. Thus the $\delta_i$ form an
 everywhere independent commuting, standard-volume-preserving polynomial frame
 dual to $dP,dQ,dR$.
 
-They cannot all be locally nilpotent. Otherwise their commuting exponentials
-would define a $\mathbb G_a^3$-action. The frame condition makes every orbit
-open, so irreducibility gives a single orbit. Moreover,
+\begin{proposition}[Completeness criterion]
+For a complex Keller map $G:\A^n\to\A^n$, let $\partial_i$ be the commuting
+polynomial fields dual to $dG_i$. Then $G$ is a polynomial automorphism if and
+only if all $\partial_i$ are complete holomorphic vector fields. In
+particular, local nilpotence of all the $\partial_i$ implies invertibility.
+\end{proposition}
+\begin{proof}
+For an automorphism the fields are pullbacks of constant coordinate fields.
+Conversely, their complete commuting flows give a $\C^n$-action satisfying
 \[
-F(\exp(s_1\delta_1)\exp(s_2\delta_2)\exp(s_3\delta_3)x)
-=F(x)+(s_1,s_2,s_3).
+G(\exp(s_1\partial_1)\cdots\exp(s_n\partial_n)x)=G(x)+s.
 \]
-The action would be free and transitive and $F$ would be a polynomial
-coordinate system, contradicting Theorem~\ref{thm:core}. Equivalently, the
-exact coframe defines a flat algebraic affine structure on $\A^3$ whose
-developing map is $F$, but the structure is incomplete.
+The frame condition makes every orbit open, so connectedness gives one orbit;
+the formula makes the action free and $G$ bijective. Ax--Grothendieck makes
+the inverse polynomial.
+\end{proof}
+
+\begin{theorem}[Total directional incompleteness]
+Every nonzero constant linear combination
+$\delta_a=a_1\delta_1+a_2\delta_2+a_3\delta_3$ is holomorphically incomplete
+and is not locally nilpotent.
+\end{theorem}
+\begin{proof}
+A local flow satisfies $F(\phi_t(x))=F(x)+ta$. The omitted curve
+\[
+\Gamma=\left\{\left(q^2/12,q,4/(3q)\right):q\in\C^*\right\}
+\]
+contains no affine line. Choose $\gamma\in\Gamma$ and $t_0\ne0$ such that
+$y=\gamma-t_0a\notin\Gamma$. Since $F(\A^3)=\A^3\setminus\Gamma$, choose
+$x$ with $F(x)=y$. A complete flow would satisfy
+$F(\phi_{t_0}(x))=\gamma$, a contradiction.
+\end{proof}
+
+An explicit integral curve of $\delta_2$ is
+\[
+\gamma(t)=\left(2/t,-t/2,5t^2/4\right),\qquad
+F(\gamma(t))=(0,t,0),\qquad \gamma'(t)=\delta_2(\gamma(t)).
+\]
+It escapes at the finite time $t=0$. Thus the exact coframe defines a flat
+algebraic affine structure whose developing map is $F$, but every nonzero
+constant direction in its dual frame is incomplete.
 
 \section{Real fibers, a plane slice, and research directions}
 
@@ -386,6 +449,45 @@ The zero-fiber components are disjoint because $A=0$ forces $B=y^2\neq0$.
 Thus a smooth polynomial family has connected nonzero fibers but a
 disconnected zero fiber; the extra component enters from infinity.
 
+\subsection{Exact finite-field fiber statistics}
+
+Over every finite field $\mathbb F_q$ of odd characteristic, let $N_j(q)$ be
+the number of targets having exactly $j$ rational preimages. Only
+$j=0,1,3$ occur.
+
+\begin{theorem}\label{thm:finitefields}
+If $\operatorname{char}\mathbb F_q\ne2,3$, then
+\[
+N_3=\frac{(q-1)(q^2+2)}6,\quad
+N_1=\frac{q^3+q^2-2q+2}2,\quad
+N_0=\frac{(q-1)(q^2+2)}3.
+\]
+In characteristic three,
+\[
+N_3=\frac{q^2(q-1)}6,\quad
+N_1=\frac{q^2(q+1)}2,\quad
+N_0=\frac{q^2(q-1)}3.
+\]
+The limiting proportions for three, one, and zero preimages are
+$1/6,1/2,1/3$, the proportions of the three cycle types in $S_3$.
+\end{theorem}
+\begin{proof}
+A target determines the binary cubic
+$2pS^3-qS^2T+2ST^2-rT^3$. Three rational preimages correspond to a
+three-element root subset of $\mathbb P^1(\mathbb F_q)$ whose $ST^2$
+coefficient is nonzero, since that coefficient must be scaled to $2$.
+Of the $\binom{q+1}{3}$ root triples, $(q-1)/2$ bad triples contain infinity
+and finite roots $a,-a$. For three finite roots, the bad equation is
+$ab+ac+bc=0$; inversion turns it into three distinct nonzero elements with
+sum zero. Ordered-pair counting gives $(q-1)(q-5)/6$ bad finite triples when
+the characteristic is not three, and $(q-1)(q-3)/6$ in characteristic three.
+Subtraction gives $N_3$. Since both source and target have $q^3$ points,
+\[
+N_0+N_1+N_3=q^3,\qquad N_1+3N_3=q^3,
+\]
+which gives $N_0=2N_3$ and the stated formulas.
+\end{proof}
+
 The immediate research program is now sharply delimited:
 \begin{enumerate}
 \item Determine whether total-degree $4$, $5$, or $6$ counterexamples exist in
@@ -403,14 +505,14 @@ existential failure in some finite dimension of the Gaussian Moments,
 Vanishing, and Image conjectures \cite{mathieu,zwart,gaussian,zhao,image}.
 \item Study whether the deleted-hyperbola slice yields an obstruction or a
 useful deformation for the still-separate plane problem.
-\item Determine which inverse-Jacobian fields are locally nilpotent or
-holomorphically complete, and quantify the growth of their flows.
+\item Classify the pole orders, escape divisors, and degree growth of the
+incomplete inverse-Jacobian flows.
 \item Use the weighted $\C^*$-action to form quotient surfaces and classify
 equivariant Keller maps.
 \item Formalize the determinant, collision, and inverse cubic in a proof
 assistant.
-\item Study reductions modulo primes through the $S_3$ cubic, including fiber
-statistics and bad-reduction behavior.
+\item Extend Theorem~\ref{thm:finitefields} to extension-field zeta functions,
+arithmetic monodromy, higher-degree lift families, and bad reduction.
 \end{enumerate}
 
 An earlier informal assertion that the map was ``forced in a natural minimal
@@ -420,8 +522,10 @@ not specified precisely enough for a publication-grade minimality theorem.
 \section{Reproducibility and limitations}
 
 The repository verifies the determinant, collision, weighted equivariance,
-collision family, weighted quotient, inverse identities, discriminants, boundary parametrization,
-nonproper path, slice Jacobian, first-coordinate factorization, and commuting
+collision family, weighted quotient, the quotient square-law differential
+identities, inverse identities, discriminants, boundary parametrization,
+nonproper path, slice Jacobian, first-coordinate factorization, the explicit
+escaping integral curve, finite-field regression counts, and commuting
 divergence-free inverse-Jacobian fields using exact symbolic arithmetic. These checks
 certify polynomial identities, not literature priority or community acceptance.
 This note is not peer reviewed, not an arXiv submission, and not a substitute
@@ -471,6 +575,8 @@ Conjecture, MathOverflow question 513387, 2026,
 \bibitem{zhang} Z. Zhang, Direct Consequences of the Three-Dimensional
 Counterexample to the Jacobian Conjecture, 2026,
 \url{https://zzhang-iu.github.io/papers/direct-consequences-jacobian/}.
+\bibitem{stacks} The Stacks Project Authors, Zariski's Main Theorem,
+Tag 05W7, \url{https://stacks.math.columbia.edu/tag/05W7}.
 \end{thebibliography}
 
 \end{document}

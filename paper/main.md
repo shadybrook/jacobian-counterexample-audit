@@ -1,6 +1,6 @@
 # An Exact Audit of an Announced Three-Dimensional Keller Map
 
-**Status:** independent working note, 20 July 2026  
+**Status:** independent working note, revised 21 July 2026
 **Authorship:** AI-assisted, user-directed audit; maintainer attribution pending  
 **Discovery credit:** the displayed map was announced by Levent Alpoge, whose
 post credits Akhil for the question and Fable for work on the example.
@@ -21,9 +21,10 @@ determine the image and nonproperness locus, and describe a finite smooth
 completion whose boundary is the normalization of the discriminant surface. We
 also exhibit a weighted scaling symmetry and an infinite rational collision
 family, direct same-rank nonautomorphic endomorphisms of the third Weyl and
-Poisson algebras, a commuting divergence-free polynomial frame that cannot be
-algebraically complete, a nonproper smooth fibration with jumping component
-count, and exact real volume formulas. Finally, we audit broader claims made in
+Poisson algebras, a commuting divergence-free polynomial frame with no
+complete constant direction, a nonproper smooth fibration with jumping
+component count, an equivariant square law for quotient Jacobians, exact
+finite-field fiber statistics, and exact real volume formulas. Finally, we audit broader claims made in
 early discussions, distinguishing exact consequences from research directions
 and explicitly recording priority uncertainty. Every polynomial identity used
 in the main arguments is covered by reproducible exact-arithmetic scripts.
@@ -175,6 +176,57 @@ $(0,0)$. More strongly, the entire critical line $h=0$ maps to the origin.
 Thus the equivariant quotient preserves a visible shadow of noninjectivity but
 introduces ramification. It is not a two-dimensional Keller counterexample;
 the formula pinpoints why this natural dimensional reduction fails.
+
+The square in this formula is forced by the weights, rather than being an
+accident of the announced coefficients.
+
+### Theorem 2.3 (equivariant quotient square law)
+
+Let $G=(A,B,C):\mathbb A^3\to\mathbb A^3$ be a polynomial map equivariant
+for source weights $(1,-1,-2)$ and target weights $(-2,-1,1)$, in the order
+displayed. Suppose $\det DG=c\in k^*$. With quotient coordinates
+
+$$
+u=xy,\quad v=x^2z,\qquad \alpha=AC^2,\quad\beta=BC,
+$$
+
+write $C=xh(u,v)$; every weight-one source polynomial has this form. Then the
+induced quotient map satisfies
+
+$$
+\boxed{\det D\bar G=c\,h(u,v)^2.}
+$$
+
+In particular, if $h$ is nonconstant, the quotient necessarily has a critical
+divisor. The quotient can be Keller only when $C/x$ is a nonzero constant.
+
+**Proof.** Let $\xi=(x,-y,-2z)$ and $\eta=(-2A,-B,C)$ be the infinitesimal
+orbit fields, and let $\Omega_x=dx\wedge dy\wedge dz$ and
+$\Omega_y=dA\wedge dB\wedge dC$. Direct exterior algebra gives
+
+$$
+du\wedge dv=x^2\iota_\xi\Omega_x,
+\qquad
+d\alpha\wedge d\beta=C^2\iota_\eta\Omega_y.
+$$
+
+Equivariance gives $DG(\xi)=\eta\circ G$, while the constant Jacobian gives
+$G^*\Omega_y=c\Omega_x$. Pulling back the second identity therefore yields
+
+$$
+(\det D\bar G)du\wedge dv
+=cC^2\iota_\xi\Omega_x
+=c(C/x)^2du\wedge dv.
+$$
+
+Since $C/x=h(u,v)$, the result follows. The two exterior-form identities are
+also certified coefficientwise in the verifier. $\square$
+
+This proves a restricted but general obstruction: every equivariant Keller
+map with this precise weight pattern develops quotient ramification unless its
+weight-one coordinate is merely a constant multiple of $x$. It does **not**
+prove that every conceivable quotient or every route to dimension two must
+ramify.
 
 ## 3. Two inverse cubics and generic degree
 
@@ -439,6 +491,16 @@ formula identifies $K_I$ with $D$. Thus $D$ generates the divisor class
 group. The smooth affine threefold $I$ is not factorial, although
 $I\setminus D\cong\mathbb A^3$ is factorial.
 
+The broad completion principle itself is not new. Zariski's Main Theorem says
+that every separated quasi-finite morphism factors as an open immersion into a
+finite morphism. Since every Keller map is etale and hence quasi-finite, any
+Keller counterexample admits such a finite completion
+([Stacks Project, Tag 05W7](https://stacks.math.columbia.edu/tag/05W7)). What is special here is
+that the completion, its boundary, its ramification, and its torsor structure
+are all completely explicit. Thus a genuinely new classification result would
+need hypotheses that force or classify this particular boundary geometry; the
+mere existence of a finite completion is classical.
+
 ## 6. Direct rank-three Dixmier and Poisson consequences
 
 Let $J=DF$ and $B=J^{-1}=-\frac12\operatorname{adj}(J)$. Since
@@ -503,23 +565,74 @@ $\delta_1,\delta_2,\delta_3$ form an everywhere independent, commuting,
 standard-volume-preserving polynomial frame dual to the exact coframe
 $dP,dQ,dR$.
 
-They cannot all be locally nilpotent. If they were, their commuting
-exponentials would define an algebraic $\mathbb G_a^3$-action. Since the
-fields form a basis everywhere, each orbit would be open. Irreducibility of
-$\mathbb A^3$ permits only one open orbit. Moreover,
+There is a useful general criterion behind this observation.
+
+### Proposition 6.1 (completeness criterion)
+
+For any complex Keller map $G:\mathbb A^n\to\mathbb A^n$, let
+$\partial_1,\ldots,\partial_n$ be the commuting polynomial fields dual to
+$dG_1,\ldots,dG_n$. Then $G$ is a polynomial automorphism if and only if all
+$\partial_i$ are complete holomorphic vector fields. In particular, $G$ is an
+automorphism if all the $\partial_i$ are locally nilpotent.
+
+**Proof.** For an automorphism the fields are pullbacks of the complete
+constant coordinate fields. Conversely, completeness and commutativity give a
+holomorphic $\mathbb C^n$-action, and
 
 $$
-F(\exp(s_1\delta_1)\exp(s_2\delta_2)\exp(s_3\delta_3)x)
-=F(x)+(s_1,s_2,s_3),
+G(\exp(s_1\partial_1)\cdots\exp(s_n\partial_n)x)
+=G(x)+(s_1,\ldots,s_n).
 $$
 
-so the action would be free and transitive and $F$ would be a polynomial
-coordinate system, a contradiction.
+The fields form a basis everywhere, so every orbit is open. Connectedness of
+$\mathbb A^n(\mathbb C)$ leaves one orbit. The displayed identity makes the
+action free and makes $G$ bijective. Ax--Grothendieck then makes the inverse
+polynomial. Locally nilpotent fields have algebraic, hence holomorphically
+complete, flows. $\square$
+
+For the announced map the conclusion can be strengthened maximally.
+
+### Theorem 6.2 (total directional incompleteness)
+
+For every nonzero $a=(a_1,a_2,a_3)\in\mathbb C^3$, the polynomial vector
+field
+
+$$
+\delta_a=a_1\delta_1+a_2\delta_2+a_3\delta_3
+$$
+
+is not holomorphically complete. Consequently no nonzero constant linear
+combination of the inverse-Jacobian columns is locally nilpotent.
+
+**Proof.** A local flow of $\delta_a$ satisfies
+$F(\phi_t(x))=F(x)+ta$. The omitted curve $\Gamma$ contains no affine line:
+it is parametrized by $q\in\mathbb C^*$ as
+
+$$
+(p,q,r)=\left(\frac{q^2}{12},q,\frac4{3q}\right).
+$$
+
+Choose $\gamma\in\Gamma$. Since $\Gamma$ contains no line parallel to $a$,
+there is a $t_0\ne0$ for which $y=\gamma-t_0a\notin\Gamma$. The image theorem
+provides $x$ with $F(x)=y$. If $\delta_a$ were complete, then
+$F(\phi_{t_0}(x))=\gamma$, contradicting
+$F(\mathbb A^3)=\mathbb A^3\setminus\Gamma$. $\square$
+
+One incomplete trajectory is especially simple. Along the target line
+$(0,t,0)$, one inverse branch is
+
+$$
+\gamma(t)=\left(\frac2t,-\frac t2,\frac54t^2\right),\qquad t\ne0.
+$$
+
+Exact differentiation gives $\gamma'(t)=\delta_2(\gamma(t))$, while
+$F(\gamma(t))=(0,t,0)$. This trajectory escapes at the finite flow time
+$t=0$, even though the target origin itself has a different finite preimage.
 
 Equivalently, the exact coframe defines a flat algebraic affine structure on
 $\mathbb A^3$ whose developing map is $F$, but that structure is incomplete.
-This translates the obstruction at infinity into the failure of at least one
-dual polynomial flow to be algebraically complete.
+This translates the obstruction at infinity into failure of every nonzero
+constant direction in the dual polynomial frame to be complete.
 
 ## 7. Real fibers and a two-dimensional slice
 
@@ -619,7 +732,85 @@ $B=y^2\ne0$. Hence a smooth polynomial morphism has connected nonzero fibers
 but a disconnected zero fiber. Proper smooth families cannot behave this way;
 the extra component enters from infinity.
 
-## 8. Audit of the eight proposed research directions
+## 8. Exact arithmetic over finite fields
+
+The same formula defines an etale map over every finite field $\mathbb F_q$
+of odd characteristic. Let $N_j(q)$ denote the number of targets having
+exactly $j$ rational preimages. The projective inverse cubic shows that only
+$j=0,1,3$ occur.
+
+### Theorem 8.1 (finite-field fiber distribution)
+
+If $\operatorname{char}\mathbb F_q\ne2,3$, then
+
+$$
+\begin{aligned}
+N_3(q)&=\frac{(q-1)(q^2+2)}6,\\
+N_1(q)&=\frac{q^3+q^2-2q+2}2,\\
+N_0(q)&=\frac{(q-1)(q^2+2)}3.
+\end{aligned}
+$$
+
+If $\operatorname{char}\mathbb F_q=3$, then
+
+$$
+N_3(q)=\frac{q^2(q-1)}6,
+\qquad
+N_1(q)=\frac{q^2(q+1)}2,
+\qquad
+N_0(q)=\frac{q^2(q-1)}3.
+$$
+
+Thus, as $q\to\infty$, the proportions of targets with three, one, and zero
+rational preimages tend respectively to
+
+$$
+\frac16,\qquad\frac12,\qquad\frac13,
+$$
+
+the proportions of the identity, transpositions, and three-cycles in $S_3$.
+
+**Proof.** A target determines the binary cubic
+
+$$
+2pS^3-qS^2T+2ST^2-rT^3,
+$$
+
+and rational preimages correspond exactly to its simple
+$\mathbb F_q$-rational projective roots. A three-element subset of
+$\mathbb P^1(\mathbb F_q)$ determines a cubic up to scale; it gives a unique
+target precisely when its $ST^2$ coefficient is nonzero, since that coefficient
+must be scaled to $2$.
+
+There are $\binom{q+1}{3}$ root triples. A triple containing infinity is bad
+exactly when its two finite roots are $a,-a$, giving $(q-1)/2$ bad triples.
+For three finite roots, vanishing of the linear coefficient is
+$ab+ac+bc=0$. None is zero, and inversion turns this into a triple of distinct
+nonzero elements with sum zero. Counting ordered pairs and dividing by six
+gives
+
+$$
+\frac{(q-1)(q-5)}6
+$$
+
+bad finite triples in characteristic other than three. In characteristic
+three the three equality exclusions coincide, giving instead
+$\frac{(q-1)(q-3)}6$. Subtracting the bad triples proves the formula for
+$N_3$.
+
+Finally, both source and target contain $q^3$ points. Hence
+
+$$
+N_0+N_1+N_3=q^3,
+\qquad
+N_1+3N_3=q^3.
+$$
+
+Therefore $N_0=2N_3$, and the remaining formulas follow. The verifier
+brute-force checks the distributions over $\mathbb F_3,\mathbb F_5$, and
+$\mathbb F_7$. $\square$
+
+## 9. Audit of the eight proposed research directions
 
 1. **Lower degree in dimension three.** The total degree here is seven.
    Published work proves the three-dimensional conjecture through degree three,
@@ -648,12 +839,13 @@ the extra component enters from infinity.
 8. **Dimension two.** Not settled. Section 7 gives a near-example on
    $\mathbb A^2\setminus\{xy=-1\}$, which may be a useful geometric test case.
 
-The weighted symmetry, collision orbit, divergence-free inverse frame,
-algebraic incompleteness, jumping component count, and real volume formulas
-were added in the present revision as independently proved deductions. We do
-not assert historical priority for them without a longer literature review.
+The weighted symmetry, collision orbit, quotient square law, divergence-free
+inverse frame, total directional incompleteness, jumping component count,
+finite-field distribution, and real volume formulas were added as
+independently proved deductions. We do not assert historical priority for them
+without a longer literature review and expert review.
 
-## 9. Further established implications and research questions
+## 10. Further established implications and research questions
 
 Published implication theorems now have the following logical consequences:
 
@@ -681,20 +873,22 @@ The most concrete next problems are:
    Image, Mathieu, Dixmier, and Poisson failures;
 6. understand whether the deleted-hyperbola slice admits any meaningful filling
    theorem, obstruction, or deformation relevant to the plane case.
-7. determine exactly which inverse-Jacobian fields are locally nilpotent or
-   holomorphically complete, and quantify the growth of their flows;
+7. classify the pole orders, escape divisors, and degree growth of the
+   incomplete inverse-Jacobian flows;
 8. exploit the weighted $\mathbb C^*$-action to form quotient surfaces and
    classify equivariant Keller maps;
 9. formalize the determinant, collision, and inverse-cubic certificate in a
    proof assistant;
 10. study reductions modulo primes through the $S_3$ cubic, including fiber
-    statistics and bad-reduction behavior.
+    statistics beyond Theorem 8.1, extension-field zeta functions, and
+    bad-reduction behavior.
 
-## 10. What is proved, what is sourced, and what is not claimed
+## 11. What is proved, what is sourced, and what is not claimed
 
 The determinant, collision, weighted quotient, inverse identities,
 discriminants, boundary parametrization, nonproper path, relative slice
-Jacobian, and commuting inverse
+Jacobian, equivariant quotient square law, finite-field regression counts,
+and commuting inverse
 Jacobian vector fields are exact symbolic identities tested in this repository.
 The fiber and completion theorems then follow by the proofs given above. The
 classical reductions and implications are literature-dependent and are cited in

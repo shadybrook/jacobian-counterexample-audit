@@ -18,6 +18,10 @@ def test_weighted_quotient():
     verify.verify_weighted_quotient()
 
 
+def test_general_equivariant_quotient_identity():
+    verify.verify_general_equivariant_quotient_identity()
+
+
 def test_inverse_cubics():
     verify.verify_inverse_cubics()
 
@@ -32,6 +36,10 @@ def test_nonproper_path_and_slice():
 
 def test_inverse_jacobian_fields():
     verify.verify_inverse_jacobian_fields()
+
+
+def test_finite_field_fiber_counts():
+    verify.verify_finite_field_fiber_counts()
 
 
 def test_first_coordinate_factorization():

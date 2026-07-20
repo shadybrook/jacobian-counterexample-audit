@@ -92,6 +92,30 @@ def verify_weighted_quotient():
     assert collapsed == Matrix([0, 0])
 
 
+def verify_general_equivariant_quotient_identity():
+    """Certificates for the weight-theoretic quotient-Jacobian theorem.
+
+    We identify a contracted volume form i_V Omega with the vector of its
+    coefficients in (dy^dz, dz^dx, dx^dy).  A wedge df^dg has coefficient
+    vector grad(f) cross grad(g).
+    """
+
+    u = x * y
+    v = x**2 * z
+    alpha = p * r**2
+    beta = q * r
+    source_orbit = Matrix([x, -y, -2 * z])
+    target_orbit = Matrix([-2 * p, -q, r])
+    source_cross = Matrix([u.diff(w) for w in (x, y, z)]).cross(
+        Matrix([v.diff(w) for w in (x, y, z)])
+    )
+    target_cross = Matrix([alpha.diff(w) for w in (p, q, r)]).cross(
+        Matrix([beta.diff(w) for w in (p, q, r)])
+    )
+    assert all(factor(a - b) == 0 for a, b in zip(source_cross, x**2 * source_orbit))
+    assert all(factor(a - b) == 0 for a, b in zip(target_cross, r**2 * target_orbit))
+
+
 def verify_inverse_cubics():
     P, Q, R = F
     t = y + 1 / x
@@ -189,6 +213,48 @@ def verify_inverse_jacobian_fields():
         divergence = sum(B[j, i].diff((x, y, z)[j]) for j in range(3))
         zero(divergence)
 
+    # An explicit integral curve of delta_Q.  It maps to the target line
+    # (0, s, 0) and escapes at finite flow time s=0.
+    flow = symbols("flow", nonzero=True)
+    curve = Matrix([2 / flow, -flow / 2, Rational(5, 4) * flow**2])
+    curve_sub = dict(zip((x, y, z), curve))
+    assert F.subs(curve_sub, simultaneous=True) == Matrix([0, flow, 0])
+    tangent = curve.diff(flow)
+    delta_q_on_curve = B[:, 1].subs(curve_sub, simultaneous=True)
+    assert all(factor(a - b) == 0 for a, b in zip(tangent, delta_q_on_curve))
+
+
+def verify_finite_field_fiber_counts():
+    """Brute-force regression checks for the proved finite-field formulas."""
+
+    def image_mod(point, ell):
+        xx, yy, zz = point
+        aa = (1 + xx * yy) % ell
+        return (
+            (aa**3 * zz + yy**2 * aa * (4 + 3 * xx * yy)) % ell,
+            (yy + 3 * xx * aa**2 * zz + 3 * xx * yy**2 * (4 + 3 * xx * yy))
+            % ell,
+            (2 * xx - 3 * xx**2 * yy - xx**3 * zz) % ell,
+        )
+
+    for ell in (3, 5, 7):
+        fibers = {}
+        for xx in range(ell):
+            for yy in range(ell):
+                for zz in range(ell):
+                    target = image_mod((xx, yy, zz), ell)
+                    fibers[target] = fibers.get(target, 0) + 1
+        distribution = {m: 0 for m in (0, 1, 3)}
+        for multiplicity in fibers.values():
+            assert multiplicity in (1, 3)
+            distribution[multiplicity] += 1
+        distribution[0] = ell**3 - len(fibers)
+        if ell == 3:
+            n3 = ell**2 * (ell - 1) // 6
+        else:
+            n3 = (ell - 1) * (ell**2 + 2) // 6
+        assert distribution == {0: 2 * n3, 1: ell**3 - 3 * n3, 3: n3}
+
 
 def verify_first_coordinate_factorization():
     A = 1 + x * y
@@ -202,10 +268,12 @@ def run_all():
     verify_core()
     verify_equivariance_and_collision_family()
     verify_weighted_quotient()
+    verify_general_equivariant_quotient_identity()
     verify_inverse_cubics()
     verify_discriminant_and_boundary()
     verify_nonproper_path_and_slice()
     verify_inverse_jacobian_fields()
+    verify_finite_field_fiber_counts()
     verify_first_coordinate_factorization()
     print("PASS: all exact symbolic checks completed")
 

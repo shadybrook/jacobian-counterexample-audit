@@ -24,6 +24,10 @@ being surrounded by avoidable overclaims.
 9. The induced two-dimensional invariant-theory quotient has Jacobian
    `-2(2-3u-v)^2`. It sends two distinct quotient points to the origin and
    collapses the critical line `2-3u-v=0`, so it is not a plane Keller map.
+10. More generally, every equivariant Keller map with source weights
+    `(1,-1,-2)` and target weights `(-2,-1,1)` has quotient Jacobian
+    `c*(C/x)^2`. Thus a nonconstant weight-one factor forces a critical
+    divisor in the quotient.
 
 ## B. Structural deductions proved for this map
 
@@ -42,9 +46,9 @@ being surrounded by avoidable overclaims.
    `O(-1) + O(-2)` over `P^1`, has Picard group `Z`, and is nonfactorial.
 10. The inverse-Jacobian columns are a global commuting divergence-free
     polynomial frame dual to `dP,dQ,dR`.
-11. Those vector fields cannot all be locally nilpotent. Equivalently, the
-    induced flat algebraic affine structure is incomplete; otherwise their
-    commuting algebraic flows would make `F` a polynomial coordinate system.
+11. Every nonzero constant linear combination of those vector fields is
+    holomorphically incomplete and is not locally nilpotent. An explicit
+    integral curve of `delta_Q` escapes at finite flow time.
 12. The smooth morphism `P: A^3 -> A^1` has connected fiber
     `A^2 \ {xy=-1}` for `p != 0`, but its zero fiber is the disjoint union of
     that surface and `G_m x A^1`. Component count jumps because the morphism is
@@ -55,6 +59,9 @@ being surrounded by avoidable overclaims.
 14. The quotient calculation gives a precise obstruction to the most natural
     equivariant descent to dimension two: ramification necessarily appears in
     this quotient model.
+15. Over every finite field of odd characteristic, rational fibers have only
+    `0`, `1`, or `3` points. Exact formulas count each type; their asymptotic
+    proportions are `1/3`, `1/2`, and `1/6`, matching the `S_3` cycle types.
 
 ## C. Consequences via established external theorems
 
@@ -87,12 +94,12 @@ repository records and cites that result but does not claim its priority.
 3. Classify weighted lifts and their monodromy groups.
 4. Classify smooth finite completions whose ramification-divisor complement is
    affine space.
-5. Determine which inverse-Jacobian vector fields are locally nilpotent,
-   complete holomorphically, or exhibit controlled degree growth.
+5. Classify the pole orders, escape divisors, and degree growth of the
+   incomplete inverse-Jacobian flows.
 6. Turn existential failures of related conjectures into small explicit
    witnesses.
-7. Study the arithmetic of the `S_3` cubic over finite fields, including fiber
-   statistics and bad reduction.
+7. Extend the exact finite-field fiber counts to zeta functions, extension
+   fields, arithmetic monodromy, and bad reduction.
 8. Analyze whether the deleted-hyperbola slice gives a genuine obstruction or
    deformation principle for the still-open plane case.
 9. Formalize the core certificate in a proof assistant.

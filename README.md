@@ -26,6 +26,8 @@ notes; the paper records those overlaps explicitly.
 - `src/verify.py`: exact symbolic certificate using SymPy.
 - `tests/test_map.py`: regression tests for the main identities.
 - `CONSEQUENCES.md`: claim-by-claim ledger of implications and non-implications.
+- `RESEARCH_FRONTIER.md`: proved new deductions, rejected routes, and the
+  highest-value next theorem targets.
 - `PROMPT_AUDIT.md`: fulfillment check against the original project request.
 - `paper/references.bib`: bibliography.
 - `LIMITATIONS.md`: scope, status, provenance, and non-claims.
@@ -48,7 +50,10 @@ floating-point equality is used for a theorem-level assertion.
 The revision additionally certifies weighted equivariance, an infinite
 rational collision family, the ramified two-dimensional weighted quotient,
 discriminant scaling, divergence-free inverse-Jacobian vector fields, and the
-factorization controlling the jumping fiber of the first coordinate.
+factorization controlling the jumping fiber of the first coordinate. It now
+also certifies the general equivariant quotient square law, an explicit
+finite-time escaping inverse-Jacobian trajectory, and finite-field fiber-count
+formulas with small-field regression checks.
 
 To build the PDF, install a LaTeX distribution containing `latexmk`,
 `pdflatex`, `amsmath`, `amsthm`, `hyperref`, and `booktabs`, then run:
@@ -61,7 +66,7 @@ make paper
 
 - [Levent Alpoge's announcement](https://x.com/__alpoge__/status/2079028340955197566), 20 July 2026 (UTC).
 
-As of 20 July 2026, this audit found an announcement and several same-day
+As of 21 July 2026, this audit found an announcement and several same-day
 technical discussions, but no peer-reviewed paper by the announcer. The
 polynomial identities themselves are finite exact calculations and do not
 depend on peer review. Broader claims of novelty, historical priority, and

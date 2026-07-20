@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "Please cite this versioned audit, and separately credit the original announcement."
 title: "An exact audit of an announced three-dimensional Keller map"
 type: report
-version: 0.2.0
+version: 0.3.0
 date-released: 2026-07-21
 authors:
   - name: "Independent audit contributors"
@@ -12,4 +12,5 @@ abstract: >-
   An AI-assisted but independently checked technical audit of the polynomial
   map announced by Levent Alpoge on 20 July 2026, with exact verification,
   fiber and monodromy calculations, geometric consequences, explicit Weyl and
-  Poisson lifts, literature context, and limitations.
+  Poisson lifts, an equivariant quotient theorem, inverse-flow incompleteness,
+  exact finite-field statistics, literature context, and limitations.

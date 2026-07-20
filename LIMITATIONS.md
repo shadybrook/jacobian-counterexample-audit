@@ -1,6 +1,6 @@
 # Limitations and non-claims
 
-Status date: 20 July 2026.
+Status date: 21 July 2026.
 
 1. This repository is an independent audit and working note, not a refereed
    article and not an arXiv submission.
@@ -25,4 +25,10 @@ Status date: 20 July 2026.
    precisely enough to support a publication-grade minimality theorem.
 9. The current-status search is time-stamped. Later papers can supersede the
    priority and status discussion.
-
+10. The equivariant quotient square law applies to the displayed weight
+    pattern; it is not a theorem about arbitrary group quotients or every
+    possible descent to dimension two.
+11. The finite-field formulas are proved by root-subset counting and checked
+    computationally for small prime fields. They do not by themselves provide
+    a new characteristic-zero counterexample or settle arithmetic questions
+    about all higher-degree lift families.
