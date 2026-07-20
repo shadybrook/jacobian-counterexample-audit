@@ -1,0 +1,340 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array,microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\A}{\mathbb A}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\Disc}{\operatorname{Disc}}
+\title{An Exact Audit of an Announced\\Three-Dimensional Keller Map}
+\author{Independent audit contributors\\
+\small AI-assisted, user-directed working note; maintainer attribution pending}
+\date{20 July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We independently audit the polynomial map $F=(P,Q,R):\A^3\to\A^3$
+announced by Levent Alpoge on 20 July 2026. Exact calculation gives
+$\det DF=-2$, while three distinct rational points map to $(-1/4,0,0)$.
+Thus the map is a counterexample to the Jacobian Conjecture in dimension
+three. We derive two inverse cubics, prove generic degree three and full
+$S_3$ monodromy, classify the complex fibers, determine the image and
+nonproperness set, describe a finite smooth completion, and construct direct
+nonautomorphic endomorphisms of the third Weyl and Poisson algebras. We also
+separate proved consequences from open directions and priority-sensitive
+claims. Exact symbolic scripts accompany this note. This is an independent,
+non-peer-reviewed audit and makes no claim of discovery or priority.
+\end{abstract}
+
+\section{Source, status, and the exact counterexample}
+
+The primary public source located by our search is Alpoge's announcement
+\cite{alpoge}. The post credits Akhil for the question and Fable for work on
+the example. Several structural observations also appeared in same-day public
+notes \cite{gallagher,mo,zhang}; we therefore make no priority claim. As of the
+date above we did not locate a peer-reviewed paper or an arXiv manuscript by
+the announcer.
+
+Define
+\begin{align*}
+P&=(1+xy)^3z+y^2(1+xy)(4+3xy),\\
+Q&=y+3x(1+xy)^2z+3xy^2(4+3xy),\\
+R&=2x-3x^2y-x^3z.
+\end{align*}
+
+\begin{theorem}\label{thm:core}
+The map $F=(P,Q,R)$ satisfies $\det DF=-2$ and
+\[
+F(0,0,-1/4)=F(1,-3/2,13/2)=F(-1,3/2,13/2)=(-1/4,0,0).
+\]
+Its component degrees are $7,6,4$.
+\end{theorem}
+
+\begin{proof}
+Differentiate and expand the determinant, then substitute the three points.
+These are identities in $\mathbb Z[x,y,z,1/2]$. The accompanying verifier
+performs the calculation using exact symbolic arithmetic.
+\end{proof}
+
+\begin{corollary}
+The Jacobian Conjecture is false in dimension three and in every dimension
+$n\geq3$. Replacing $P$ by $-P/2$ normalizes the determinant to one.
+The result holds over every characteristic-zero field. It does not decide the
+two-dimensional case.
+\end{corollary}
+
+\section{Inverse cubics and generic degree}
+
+Write target coordinates as $(p,q,r)$. In the function field, set
+$t=y+1/x$. Direct simplification gives
+\[
+q=4t+\frac2x-3rt^2,\qquad 2p=rt^3-2t^2+qt.
+\]
+Thus $t$ is a root of
+\begin{equation}\label{eq:tcubic}
+C_{p,q,r}(T)=rT^3-2T^2+qT-2p.
+\end{equation}
+If $\rho=C'(t)$, then
+\begin{equation}\label{eq:trec}
+\rho=\frac2x,\quad x=\frac2\rho,\quad y=t-\frac\rho2,
+\quad z=\frac54\rho^2-\frac32t\rho-\frac r8\rho^3.
+\end{equation}
+Consequently $\C(x,y,z)=\C(p,q,r)(t)$ and the field degree is at most
+three. The three simple points in Theorem~\ref{thm:core} have disjoint analytic
+neighborhoods mapped biholomorphically onto a common neighborhood. Hence the
+generic degree is at least three, and therefore exactly three. In particular,
+\eqref{eq:tcubic} is irreducible over $\C(p,q,r)$.
+
+A projectively complete form is obtained from $s=x/(1+xy)$:
+\begin{equation}\label{eq:scubic}
+H_{p,q,r}(s)=2ps^3-qs^2+2s-r=0,
+\end{equation}
+with homogenization
+\[
+\Phi_{p,q,r}(S,T)=2pS^3-qS^2T+2ST^2-rT^3.
+\]
+For a finite simple root $s$, put $d=1-sq+3ps^2=H'(s)/2$. Then
+\[
+x=\frac{s}{d},\qquad y=q-3ps,
+\qquad z=\frac{2x-3x^2y-r}{x^3},
+\]
+using the regular reconstruction \eqref{eq:trec} on the complementary chart.
+Thus simple projective roots are in bijection with affine preimages.
+
+\section{Discriminant, monodromy, fibers, and image}
+
+The discriminant of \eqref{eq:tcubic} is $-4\mathcal Q$, where
+\[
+\mathcal Q=27p^2r^2-18pqr+16p+q^3r-q^2,
+\qquad
+\Disc_p(\mathcal Q)=-4(3qr-4)^3.
+\]
+Gauss's lemma shows that $\mathcal Q$ is irreducible and not a square in
+$\C(p,q,r)$. Since the cubic is irreducible,
+\[
+\Gal(C/\C(p,q,r))\cong S_3.
+\]
+The degree-three cover therefore has full $S_3$ monodromy. Its rational deck
+group is trivial because for the nonnormal cubic subextension
+$L/K$, $\operatorname{Aut}_K(L)=N_{S_3}(S_2)/S_2=1$.
+
+For \eqref{eq:scubic}, write
+\[
+\Delta=q^2-16p-q^3r+18pqr-27p^2r^2.
+\]
+Its discriminant is $4\Delta$. A cubic has no simple projective root precisely
+when it has a triple root. Coefficient comparison gives the triple-root curve
+\[
+\Gamma=\left\{\left(\frac1{3u^2},\frac2u,\frac{2u}3\right):u\in\C^*\right\}
+=V(12p-q^2,3qr-4).
+\]
+
+\begin{theorem}\label{thm:fibers}
+For $(p,q,r)\in\C^3$,
+\[
+\#F^{-1}(p,q,r)=
+\begin{cases}
+3,&\Delta\neq0,\\
+1,&\Delta=0\text{ and }(p,q,r)\notin\Gamma,\\
+0,&(p,q,r)\in\Gamma.
+\end{cases}
+\]
+Hence $F(\C^3)=\C^3\setminus\Gamma$.
+\end{theorem}
+
+\begin{proof}
+Off $V(\Delta)$ the projective cubic has three simple roots. On the
+discriminant but off $\Gamma$, it has a double root and a simple root. The
+simple root reconstructs one affine point; the double root cannot, because
+$F$ is etale and has no ramified affine point. On $\Gamma$ the unique root is
+triple, so no affine preimage exists.
+\end{proof}
+
+Generic degree three is minimal for any Keller counterexample. Degree one is
+the birational case; a separable degree-two extension is Galois, and the
+Galois case of the Jacobian Conjecture is known
+\cite{campbell,razar,wright1981}.
+
+\section{Infinity and the smooth finite completion}
+
+The explicit path
+\[
+(x,y,z)=\left(\lambda,-\frac1\lambda,\frac5{\lambda^2}\right),
+\qquad F(x,y,z)=\left(0,\frac2\lambda,0\right)
+\]
+proves nonproperness.
+
+Define
+\[
+I=\{((p,q,r),[S:T])\in\A^3\times\mathbb P^1:\Phi_{p,q,r}(S,T)=0\}.
+\]
+The projection $\pi:I\to\A^3$ is finite of degree three. The partial
+derivatives with respect to $p,q,r$ are $2S^3,-S^2T,-T^3$, which never vanish
+simultaneously, so $I$ is smooth. The map
+\[
+(x,y,z)\longmapsto(F(x,y,z),[x:1+xy])
+\]
+identifies $\A^3$ with $I\setminus D$, where $D$ is the multiple-root divisor.
+
+On the chart $S=1$, solving $\Phi=\partial\Phi/\partial u=0$ gives
+\[
+p=u^2-ru^3,\qquad q=4u-3ru^2.
+\]
+Thus $D\cong\A^2_{u,r}$ and its finite birational map to
+$\Sigma=V(\Delta)$ is the normalization. The triple-root locus $3ru=2$ maps
+to $\Gamma$. Standard cubic-discriminant geometry gives an ordinary transverse
+cusp along $\Gamma$.
+
+\begin{proposition}
+The full nonproperness set is $S_F=\Sigma$.
+\end{proposition}
+\begin{proof}
+Approaching $D$ from $I\setminus D$ produces escaping source sequences with
+limits in $\pi(D)=\Sigma$. Conversely, properness of the finite map
+$I\to\A^3$ excludes any other finite asymptotic value.
+\end{proof}
+
+Projection $I\to\mathbb P^1$ is a nontrivial affine-plane torsor under
+\[
+E=\ker\left(\mathcal O^{\oplus3}\xrightarrow{(2S^3,-S^2T,-T^3)}
+\mathcal O(3)\right)\cong\mathcal O(-1)\oplus\mathcal O(-2).
+\]
+The displayed splitting follows from syzygies $(T,2S,0)$ and
+$(0,T^2,-S^2)$. There is no global section because constants $p,q,r$ cannot
+produce the missing $ST^2$ term. Hence $\Pic(I)\cong\mathbb Z$. Adjunction and
+the ramification formula give $K_I\cong\mathcal O(1)\cong\mathcal O(D)$, so
+$D$ generates the divisor class group. Thus $I$ is smooth affine but not
+factorial, whereas $I\setminus D\cong\A^3$ is factorial.
+
+\section{Direct Dixmier and Poisson counterexamples}
+
+Let $J=DF$ and $B=J^{-1}=-\tfrac12\operatorname{adj}(J)$. Define
+\[
+\delta_i=\sum_jB_{ji}\frac{\partial}{\partial x_j}.
+\]
+Then $\delta_i(F_k)=\delta_{ik}$. The commutator
+$[\delta_i,\delta_j]$ annihilates $\C(F_1,F_2,F_3)$ and hence its finite
+separable extension $\C(x_1,x_2,x_3)$, so the vector fields commute.
+
+For the third Weyl algebra, the assignments
+\[
+X_i\mapsto F_i(X),\qquad D_i\mapsto\sum_jB_{ji}(X)D_j
+\]
+preserve all Weyl relations. They do not define an automorphism. Otherwise an
+automorphism would take the centralizer $\C[X]$ of $\C[X]$ onto the centralizer
+of $\C[F]$. Since every polynomial in $X$ already centralizes $\C[F]$, this
+would force $\C[X]\subseteq\C[F]$, and hence equality, contradicting
+Theorem~\ref{thm:core}. Thus the Dixmier Conjecture fails in rank three.
+
+On the canonical polynomial Poisson algebra, the assignments
+\[
+x_i\mapsto F_i(x),\qquad \xi_i\mapsto\sum_jB_{ji}(x)\xi_j
+\]
+preserve brackets. The same centralizer argument proves noninvertibility, so
+the Poisson Conjecture fails in rank three. These implications are consistent
+with the classical equivalence framework \cite{ae2007}.
+
+\section{Real fibers, a plane slice, and research directions}
+
+For real targets, the sign of $\Delta$ gives three real preimages when
+$\Delta>0$, one when $\Delta<0$, one on $\Sigma\setminus\Gamma$, and none on
+$\Gamma(\R)$. Hence $F(\R^3)=\R^3\setminus\Gamma(\R)$.
+
+Fix $P=p\neq0$. The level surface is
+$X=\A^2\setminus V(1+xy)$, and the remaining coordinates are
+\[
+Q_p=\frac{3px+xy^2+y}{1+xy},\qquad
+R_p=\frac{x(-px^2+x^2y^2+3xy+2)}{(1+xy)^3},
+\]
+with relative Jacobian $-2/(1+xy)^3$. This is an etale map from a punctured
+affine plane, not a counterexample on $\A^2$; the nonconstant unit $1+xy$
+shows $X\not\cong\A^2$.
+
+The immediate research program is now sharply delimited:
+\begin{enumerate}
+\item Determine whether total-degree $4$, $5$, or $6$ counterexamples exist in
+dimension three. Degree at most three is known \cite{wright1993,vistoli}.
+\item Produce and optimize explicit cubic-homogeneous and Druzkowski forms via
+the genuine stable reductions \cite{bcw}; a naive circuit lift is invalid.
+\item Classify the affine-plane torsors and ramification complements producing
+$\A^3$.
+\item Classify weighted-lift families and their possible monodromy groups. A
+same-day note constructs every generic degree at least three \cite{gallagher};
+we do not claim priority for that family.
+\item Seek explicit small witnesses for related failed conjectures. Published
+implications give failure of the Mathieu conjecture for $SU(3)$ and
+existential failure in some finite dimension of the Gaussian Moments,
+Vanishing, and Image conjectures \cite{zwart,gaussian,zhao,image}.
+\item Study whether the deleted-hyperbola slice yields an obstruction or a
+useful deformation for the still-separate plane problem.
+\end{enumerate}
+
+An earlier informal assertion that the map was ``forced in a natural minimal
+PDE ansatz'' is deliberately omitted: the class and equivalence relation were
+not specified precisely enough for a publication-grade minimality theorem.
+
+\section{Reproducibility and limitations}
+
+The repository verifies the determinant, collision, inverse identities,
+discriminants, boundary parametrization, nonproper path, slice Jacobian, and
+commuting inverse-Jacobian fields using exact symbolic arithmetic. These checks
+certify polynomial identities, not literature priority or community acceptance.
+This note is not peer reviewed, not an arXiv submission, and not a substitute
+for independent expert review. Its status discussion is time-stamped and may
+be superseded.
+
+\begin{thebibliography}{99}
+\bibitem{alpoge} L. Alpoge, announcement on X, 20 July 2026,
+\url{https://x.com/__alpoge__/status/2079028340955197566}.
+\bibitem{bcw} H. Bass, E. H. Connell, and D. Wright, The Jacobian Conjecture:
+Reduction of Degree and Formal Expansion of the Inverse, \emph{Bull. Amer.
+Math. Soc.} 7 (1982), 287--330. DOI: 10.1090/S0273-0979-1982-15032-7.
+\bibitem{campbell} L. A. Campbell, A Condition for a Polynomial Map to Be
+Invertible, \emph{Math. Ann.} 205 (1973), 243--248.
+\bibitem{razar} M. Razar, Polynomial Maps with Constant Jacobian, \emph{Israel
+J. Math.} 32 (1979), 97--106.
+\bibitem{wright1981} D. Wright, On the Jacobian Conjecture, \emph{Illinois J.
+Math.} 25 (1981), 423--440.
+\bibitem{wright1993} D. Wright, The Jacobian Conjecture: Linear
+Triangularization for Cubics in Dimension Three, \emph{Linear Multilinear
+Algebra} 34 (1993), 85--97.
+\bibitem{vistoli} A. Vistoli, The Jacobian Conjecture in Dimension 3 and Degree
+3, \emph{J. Pure Appl. Algebra} 142 (1999), 79--89.
+\bibitem{ae2007} P. K. Adjamagbo and A. van den Essen, A Proof of the
+Equivalence of the Dixmier, Jacobian and Poisson Conjectures, \emph{Acta Math.
+Vietnam.} 32 (2007), 205--214.
+\bibitem{zhao} W. Zhao, Hessian Nilpotent Polynomials and the Jacobian
+Conjecture, arXiv:math/0409534.
+\bibitem{gaussian} H. Derksen, A. van den Essen, and W. Zhao, The Gaussian
+Moments Conjecture and the Jacobian Conjecture, \emph{Israel J. Math.} 219
+(2017), 53--68.
+\bibitem{image} A. van den Essen, D. Wright, and W. Zhao, On the Image
+Conjecture, arXiv:1008.3962.
+\bibitem{zwart} K. Zwart, Mathieu's Approach to the Jacobian Conjecture,
+arXiv:2511.16561.
+\bibitem{gallagher} A. Gallagher, Weighted Lifts from the Jacobian
+Counterexample, same-day public working note, 2026,
+\url{https://github.com/algal/jacobianfun/blob/main/RESEARCH.md}.
+\bibitem{mo} Galois Structure of the New Counterexample to the Jacobian
+Conjecture, MathOverflow question 513387, 2026,
+\url{https://mathoverflow.net/questions/513387/}.
+\bibitem{zhang} Z. Zhang, Direct Consequences of the Three-Dimensional
+Counterexample to the Jacobian Conjecture, 2026,
+\url{https://zzhang-iu.github.io/papers/direct-consequences-jacobian/}.
+\end{thebibliography}
+
+\end{document}
