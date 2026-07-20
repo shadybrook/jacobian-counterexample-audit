@@ -5,6 +5,13 @@
 \usepackage{lmodern}
 \usepackage{xcolor}
 \usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={An Exact Audit of an Announced Three-Dimensional Keller Map},
+  pdfauthor={Independent audit contributors},
+  pdfsubject={Exact verification and consequences of an announced Keller map},
+  pdfkeywords={Jacobian Conjecture, Keller map, polynomial map, Weyl algebra,
+  Poisson algebra, reproducible mathematics}
+}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -35,9 +42,13 @@ three. We derive two inverse cubics, prove generic degree three and full
 $S_3$ monodromy, classify the complex fibers, determine the image and
 nonproperness set, describe a finite smooth completion, and construct direct
 nonautomorphic endomorphisms of the third Weyl and Poisson algebras. We also
-separate proved consequences from open directions and priority-sensitive
-claims. Exact symbolic scripts accompany this note. This is an independent,
-non-peer-reviewed audit and makes no claim of discovery or priority.
+exhibit a weighted scaling symmetry and collision family, a commuting
+divergence-free polynomial frame that cannot be algebraically complete, a
+nonproper smooth fibration with jumping component count, and exact real volume
+formulas. We separate proved consequences from open directions and
+priority-sensitive claims. Exact symbolic scripts accompany this note. This is
+an independent, non-peer-reviewed audit and makes no claim of discovery or
+priority.
 \end{abstract}
 
 \section{Source, status, and the exact counterexample}
@@ -77,6 +88,54 @@ The result holds over every characteristic-zero field. It does not decide the
 two-dimensional case.
 \end{corollary}
 
+\subsection{Weighted equivariance and a collision family}
+
+For $\lambda\in\C^*$, define
+\[
+\sigma_\lambda(x,y,z)=\left(\lambda x,\frac y\lambda,
+\frac z{\lambda^2}\right),\qquad
+\tau_\lambda(p,q,r)=\left(\frac p{\lambda^2},\frac q\lambda,
+\lambda r\right).
+\]
+Exact substitution gives $F\circ\sigma_\lambda=\tau_\lambda\circ F$. Hence
+for every nonzero $\lambda$,
+\begin{align*}
+F\left(0,0,-\frac1{4\lambda^2}\right)
+&=F\left(\lambda,-\frac3{2\lambda},\frac{13}{2\lambda^2}\right)\\
+&=F\left(-\lambda,\frac3{2\lambda},\frac{13}{2\lambda^2}\right)
+=\left(-\frac1{4\lambda^2},0,0\right).
+\end{align*}
+The discriminant below is equivariant:
+$\Delta(\tau_\lambda(p,q,r))=\lambda^{-2}\Delta(p,q,r)$. Since
+$\Delta(-1/4,0,0)=4$, the announced collision is a regular generic
+three-sheet fiber, not an exceptional discriminant fiber. The symmetry
+$F(-x,-y,z)=(P,-Q,-R)$ is the case $\lambda=-1$.
+
+\subsection{The two-dimensional weighted quotient}
+
+The source and target invariant rings are
+\[
+\C[x,y,z]^{\mathbb G_m}=\C[u,v],\quad u=xy,\ v=x^2z,
+\qquad
+\C[p,q,r]^{\mathbb G_m}=\C[\alpha,\beta],\quad
+\alpha=pr^2,\ \beta=qr.
+\]
+Every invariant monomial factors through these generators. Equivariance thus
+induces $\bar F:\A^2_{u,v}\to\A^2_{\alpha,\beta}$. Put $h=2-3u-v$.
+Exact elimination gives
+\begin{align*}
+\alpha&=(1+u)h^2(3u^3+u^2v+4u^2+2uv+v),\\
+\beta&=h(9u^3+3u^2v+12u^2+6uv+u+3v),
+\end{align*}
+and
+\[
+\det D\bar F=-2h^2.
+\]
+The distinct points $(0,0)$ and $(-3/2,13/2)$ both map to the quotient origin;
+indeed the whole critical line $h=0$ maps there. Thus the quotient retains a
+shadow of noninjectivity but introduces ramification. It is not a plane Keller
+counterexample, and the formula pinpoints why this natural reduction fails.
+
 \section{Inverse cubics and generic degree}
 
 Write target coordinates as $(p,q,r)$. In the function field, set
@@ -110,10 +169,18 @@ with homogenization
 For a finite simple root $s$, put $d=1-sq+3ps^2=H'(s)/2$. Then
 \[
 x=\frac{s}{d},\qquad y=q-3ps,
-\qquad z=\frac{2x-3x^2y-r}{x^3},
+\qquad z=\frac{2x-3x^2y-r}{x^3}\quad(s\neq0).
 \]
-using the regular reconstruction \eqref{eq:trec} on the complementary chart.
-Thus simple projective roots are in bijection with affine preimages.
+For $s=0$, necessarily $r=0$, and the regular formula is
+$(x,y,z)=(0,q,p-4q^2)$. For the projective root $[S:T]=[1:0]$,
+simplicity forces $p=0$ and $q\neq0$, and
+\[
+x=\frac2q,\qquad y=-\frac q2,\qquad z=\frac{5x-r}{x^3}.
+\]
+Direct substitution checks both exceptional formulas. Conversely an affine
+point with $1+xy\neq0$ gives $H'(s)=2/(1+xy)\neq0$, while a point with
+$1+xy=0$ gives a simple root at infinity. Thus simple projective roots are
+in bijection with affine preimages.
 
 \section{Discriminant, monodromy, fibers, and image}
 
@@ -248,11 +315,51 @@ preserve brackets. The same centralizer argument proves noninvertibility, so
 the Poisson Conjecture fails in rank three. These implications are consistent
 with the classical equivalence framework \cite{ae2007}.
 
+\subsection{A commuting volume-preserving frame and its incompleteness}
+
+The columns of $B$ satisfy the additional exact identities
+\[
+[\delta_i,\delta_j]=0,\qquad
+\operatorname{div}(\delta_i)=0,\qquad
+\det(B)=-\frac12.
+\]
+The divergence equations are the Piola identity for the adjugate of a gradient
+matrix and are checked directly by the verifier. Thus the $\delta_i$ form an
+everywhere independent commuting, standard-volume-preserving polynomial frame
+dual to $dP,dQ,dR$.
+
+They cannot all be locally nilpotent. Otherwise their commuting exponentials
+would define a $\mathbb G_a^3$-action. The frame condition makes every orbit
+open, so irreducibility gives a single orbit. Moreover,
+\[
+F(\exp(s_1\delta_1)\exp(s_2\delta_2)\exp(s_3\delta_3)x)
+=F(x)+(s_1,s_2,s_3).
+\]
+The action would be free and transitive and $F$ would be a polynomial
+coordinate system, contradicting Theorem~\ref{thm:core}. Equivalently, the
+exact coframe defines a flat algebraic affine structure on $\A^3$ whose
+developing map is $F$, but the structure is incomplete.
+
 \section{Real fibers, a plane slice, and research directions}
 
 For real targets, the sign of $\Delta$ gives three real preimages when
 $\Delta>0$, one when $\Delta<0$, one on $\Sigma\setminus\Gamma$, and none on
 $\Gamma(\R)$. Hence $F(\R^3)=\R^3\setminus\Gamma(\R)$.
+
+If $E\subset\{\Delta>0\}$ is relatively compact and measurable, the three
+real inverse branches and $|\det DF|=2$ give
+\[
+\operatorname{vol}(F^{-1}(E))=\frac32\operatorname{vol}(E).
+\]
+For relatively compact measurable $E\subset\{\Delta<0\}$, one real branch
+gives
+\[
+\operatorname{vol}(F^{-1}(E))=\frac12\operatorname{vol}(E).
+\]
+Every local orientation contribution is $-1$, while the signed sum over a
+regular real fiber changes from $-3$ to $-1$ when two branches escape at the
+discriminant. This is not a global topological degree, since $F$ is not
+proper.
 
 Fix $P=p\neq0$. The level surface is
 $X=\A^2\setminus V(1+xy)$, and the remaining coordinates are
@@ -263,6 +370,21 @@ R_p=\frac{x(-px^2+x^2y^2+3xy+2)}{(1+xy)^3},
 with relative Jacobian $-2/(1+xy)^3$. This is an etale map from a punctured
 affine plane, not a counterexample on $\A^2$; the nonconstant unit $1+xy$
 shows $X\not\cong\A^2$.
+
+There is a second nonproperness diagnostic. Put
+\[
+A=1+xy,\qquad B=A^2z+y^2(4+3xy),\qquad P=AB.
+\]
+Since $DF$ is invertible, $dP$ never vanishes and
+$P:\A^3\to\A^1$ is smooth. Nevertheless,
+\[
+P^{-1}(p)\cong X\quad(p\neq0),\qquad
+P^{-1}(0)=\{B=0\}\sqcup\{A=0\}
+\cong X\sqcup(\mathbb G_m\times\A^1).
+\]
+The zero-fiber components are disjoint because $A=0$ forces $B=y^2\neq0$.
+Thus a smooth polynomial family has connected nonzero fibers but a
+disconnected zero fiber; the extra component enters from infinity.
 
 The immediate research program is now sharply delimited:
 \begin{enumerate}
@@ -278,9 +400,17 @@ we do not claim priority for that family.
 \item Seek explicit small witnesses for related failed conjectures. Published
 implications give failure of the Mathieu conjecture for $SU(3)$ and
 existential failure in some finite dimension of the Gaussian Moments,
-Vanishing, and Image conjectures \cite{zwart,gaussian,zhao,image}.
+Vanishing, and Image conjectures \cite{mathieu,zwart,gaussian,zhao,image}.
 \item Study whether the deleted-hyperbola slice yields an obstruction or a
 useful deformation for the still-separate plane problem.
+\item Determine which inverse-Jacobian fields are locally nilpotent or
+holomorphically complete, and quantify the growth of their flows.
+\item Use the weighted $\C^*$-action to form quotient surfaces and classify
+equivariant Keller maps.
+\item Formalize the determinant, collision, and inverse cubic in a proof
+assistant.
+\item Study reductions modulo primes through the $S_3$ cubic, including fiber
+statistics and bad-reduction behavior.
 \end{enumerate}
 
 An earlier informal assertion that the map was ``forced in a natural minimal
@@ -289,14 +419,16 @@ not specified precisely enough for a publication-grade minimality theorem.
 
 \section{Reproducibility and limitations}
 
-The repository verifies the determinant, collision, inverse identities,
-discriminants, boundary parametrization, nonproper path, slice Jacobian, and
-commuting inverse-Jacobian fields using exact symbolic arithmetic. These checks
+The repository verifies the determinant, collision, weighted equivariance,
+collision family, weighted quotient, inverse identities, discriminants, boundary parametrization,
+nonproper path, slice Jacobian, first-coordinate factorization, and commuting
+divergence-free inverse-Jacobian fields using exact symbolic arithmetic. These checks
 certify polynomial identities, not literature priority or community acceptance.
 This note is not peer reviewed, not an arXiv submission, and not a substitute
 for independent expert review. Its status discussion is time-stamped and may
 be superseded.
 
+\small
 \begin{thebibliography}{99}
 \bibitem{alpoge} L. Alpoge, announcement on X, 20 July 2026,
 \url{https://x.com/__alpoge__/status/2079028340955197566}.
@@ -321,11 +453,15 @@ Vietnam.} 32 (2007), 205--214.
 Conjecture, arXiv:math/0409534.
 \bibitem{gaussian} H. Derksen, A. van den Essen, and W. Zhao, The Gaussian
 Moments Conjecture and the Jacobian Conjecture, \emph{Israel J. Math.} 219
-(2017), 53--68.
+(2017), 917--928.
 \bibitem{image} A. van den Essen, D. Wright, and W. Zhao, On the Image
 Conjecture, arXiv:1008.3962.
 \bibitem{zwart} K. Zwart, Mathieu's Approach to the Jacobian Conjecture,
 arXiv:2511.16561.
+\bibitem{mathieu} O. Mathieu, Some Conjectures about Invariant Theory and
+Their Applications, in \emph{Alg\`ebre non commutative, groupes quantiques et
+invariants}, S\'eminaires et Congr\`es 2, Soci\'et\'e Math\'ematique de France,
+1997, 263--279.
 \bibitem{gallagher} A. Gallagher, Weighted Lifts from the Jacobian
 Counterexample, same-day public working note, 2026,
 \url{https://github.com/algal/jacobianfun/blob/main/RESEARCH.md}.

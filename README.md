@@ -23,6 +23,8 @@ notes; the paper records those overlaps explicitly.
 - `output/pdf/jacobian_counterexample_audit.pdf`: built paper, when present.
 - `src/verify.py`: exact symbolic certificate using SymPy.
 - `tests/test_map.py`: regression tests for the main identities.
+- `CONSEQUENCES.md`: claim-by-claim ledger of implications and non-implications.
+- `PROMPT_AUDIT.md`: fulfillment check against the original project request.
 - `paper/references.bib`: bibliography.
 - `LIMITATIONS.md`: scope, status, provenance, and non-claims.
 
@@ -40,6 +42,11 @@ make test
 
 The verifier uses symbolic expansion and exact rational arithmetic. No
 floating-point equality is used for a theorem-level assertion.
+
+The revision additionally certifies weighted equivariance, an infinite
+rational collision family, the ramified two-dimensional weighted quotient,
+discriminant scaling, divergence-free inverse-Jacobian vector fields, and the
+factorization controlling the jumping fiber of the first coordinate.
 
 To build the PDF, install a LaTeX distribution containing `latexmk`,
 `pdflatex`, `amsmath`, `amsthm`, `hyperref`, and `booktabs`, then run:
@@ -67,4 +74,3 @@ before archival citation if appropriate; do not erase the discovery credit or
 the AI-assistance disclosure.
 
 Code is MIT licensed. Paper and explanatory text are CC BY 4.0.
-

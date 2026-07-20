@@ -38,6 +38,60 @@ def verify_core():
         assert image == target
 
 
+def verify_equivariance_and_collision_family():
+    lam = symbols("lam", nonzero=True)
+    scaled = F.subs({x: lam * x, y: y / lam, z: z / lam**2}, simultaneous=True)
+    expected = Matrix([F[0] / lam**2, F[1] / lam, lam * F[2]])
+    assert all(factor(a - b) == 0 for a, b in zip(scaled, expected))
+
+    target = Matrix([-Rational(1, 4) / lam**2, 0, 0])
+    points = [
+        (0, 0, -Rational(1, 4) / lam**2),
+        (lam, -Rational(3, 2) / lam, Rational(13, 2) / lam**2),
+        (-lam, Rational(3, 2) / lam, Rational(13, 2) / lam**2),
+    ]
+    for point in points:
+        assert all(
+            factor(a - b) == 0
+            for a, b in zip(F.subs(dict(zip((x, y, z), point))), target)
+        )
+
+    Delta = q**2 - 16 * p - q**3 * r + 18 * p * q * r - 27 * p**2 * r**2
+    scaled_delta = Delta.subs(
+        {p: p / lam**2, q: q / lam, r: lam * r}, simultaneous=True
+    )
+    zero(scaled_delta - Delta / lam**2)
+    assert Delta.subs({p: -Rational(1, 4), q: 0, r: 0}) == 4
+
+
+def verify_weighted_quotient():
+    u, v = symbols("u v")
+    h = 2 - 3 * u - v
+    alpha = (1 + u) * h**2 * (
+        3 * u**3 + u**2 * v + 4 * u**2 + 2 * u * v + v
+    )
+    beta = h * (
+        9 * u**3 + 3 * u**2 * v + 12 * u**2 + 6 * u * v + u + 3 * v
+    )
+
+    # These are the target invariants alpha=P*R^2 and beta=Q*R expressed
+    # in the source invariants u=xy and v=x^2*z.
+    source_substitution = {u: x * y, v: x**2 * z}
+    zero(alpha.subs(source_substitution) - F[0] * F[2] ** 2)
+    zero(beta.subs(source_substitution) - F[1] * F[2])
+    quotient_jacobian = Matrix([alpha, beta]).jacobian((u, v)).det()
+    zero(quotient_jacobian + 2 * h**2)
+
+    origin = {u: 0, v: 0}
+    second = {u: -Rational(3, 2), v: Rational(13, 2)}
+    assert Matrix([alpha, beta]).subs(origin) == Matrix([0, 0])
+    assert Matrix([alpha, beta]).subs(second) == Matrix([0, 0])
+    # The entire critical line h=0 is collapsed to the quotient origin.
+    line = {v: 2 - 3 * u}
+    collapsed = Matrix([factor(alpha.subs(line)), factor(beta.subs(line))])
+    assert collapsed == Matrix([0, 0])
+
+
 def verify_inverse_cubics():
     P, Q, R = F
     t = y + 1 / x
@@ -56,6 +110,24 @@ def verify_inverse_cubics():
     zero(d - 1 / (1 + x * y))
     zero(s / d - x)
     zero(Q - 3 * P * s - y)
+
+    # Exceptional reconstruction for the finite root s=0 (necessarily r=0).
+    zero(F[0].subs({x: 0, y: q, z: p - 4 * q**2}) - p)
+    zero(F[1].subs({x: 0, y: q, z: p - 4 * q**2}) - q)
+    zero(F[2].subs({x: 0, y: q, z: p - 4 * q**2}))
+
+    # Exceptional reconstruction for the projective root [S:T]=[1:0].
+    x_inf = 2 / q
+    infinity_point = {
+        x: x_inf,
+        y: -q / 2,
+        z: (5 * x_inf - r) / x_inf**3,
+    }
+    infinity_target = Matrix([0, q, r])
+    assert all(
+        factor(a - b) == 0
+        for a, b in zip(F.subs(infinity_point, simultaneous=True), infinity_target)
+    )
 
 
 def verify_discriminant_and_boundary():
@@ -99,6 +171,7 @@ def verify_nonproper_path_and_slice():
 def verify_inverse_jacobian_fields():
     B = simplify(J.inv())
     assert all(entry.is_polynomial(x, y, z) for entry in B)
+    assert factor(B.det()) == -Rational(1, 2)
     # delta_i(F_k) = delta_ik.
     assert simplify(Matrix(F).jacobian((x, y, z)) * B) == Matrix.eye(3)
     # Coordinate formula for commutators of the polynomial vector fields.
@@ -111,14 +184,29 @@ def verify_inverse_jacobian_fields():
                     for j in range(3)
                 )
                 zero(bracket)
+    # Piola identity: the inverse-Jacobian columns preserve standard volume.
+    for i in range(3):
+        divergence = sum(B[j, i].diff((x, y, z)[j]) for j in range(3))
+        zero(divergence)
+
+
+def verify_first_coordinate_factorization():
+    A = 1 + x * y
+    Bfactor = A**2 * z + y**2 * (4 + 3 * x * y)
+    zero(F[0] - A * Bfactor)
+    # The two components of P=0 are disjoint: on A=0, Bfactor=y^2=1/x^2.
+    assert factor(Bfactor.subs(y, -1 / x)) == 1 / x**2
 
 
 def run_all():
     verify_core()
+    verify_equivariance_and_collision_family()
+    verify_weighted_quotient()
     verify_inverse_cubics()
     verify_discriminant_and_boundary()
     verify_nonproper_path_and_slice()
     verify_inverse_jacobian_fields()
+    verify_first_coordinate_factorization()
     print("PASS: all exact symbolic checks completed")
 
 
