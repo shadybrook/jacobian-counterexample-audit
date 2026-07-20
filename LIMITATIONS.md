@@ -47,3 +47,10 @@ Status date: 21 July 2026.
     asymptotic at reductions retaining maximal geometric monodromy, not an
     exact count for every prime. Its cusp escape formula explicitly excludes
     the degenerate leading-cubic case, which requires further Newton steps.
+16. The residue-ratio obstruction requires the residue ratio to be
+    transcendental over the ground field. Calling the ratio merely
+    "nonconstant" is safe over the complex numbers, but is false over an
+    arbitrary non-algebraically-closed constant field.
+17. Translation symmetry of the image is proved necessary for completeness of
+    an inverse-Jacobian direction. No converse is asserted without additional
+    global path-lifting or boundary-avoidance hypotheses.

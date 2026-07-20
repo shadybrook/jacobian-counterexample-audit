@@ -41,7 +41,7 @@ Choose a uniformizer \(s\) at the generic point of \(D\), and let
 f_0=(sf)|_D,\qquad g_0=(sg)|_D\in k(D)^*.
 \]
 
-If \(g_0/f_0\) is nonconstant in \(k(D)\), then every nonconstant polynomial
+If \(g_0/f_0\) is transcendental over \(k\), then every nonconstant polynomial
 \(H\in k[U,V]\) satisfies
 
 \[
@@ -67,10 +67,38 @@ by \(s^m\) and reducing at the generic point of \(D\) gives
 =f_0^m H_m(1,g_0/f_0).
 \]
 
-A nonconstant element of \(k(D)\) is transcendental over \(k\). Therefore the
-nonzero one-variable polynomial \(H_m(1,T)\) cannot vanish at \(g_0/f_0\).
+The nonzero one-variable polynomial \(H_m(1,T)\) cannot vanish at the
+transcendental element \(g_0/f_0\).
 The displayed residue is nonzero, proving that the pole order is exactly
 \(m\).  This proves the theorem.
+
+If \(k\) is algebraically closed, the hypothesis is equivalently that the
+ratio is nonconstant. Over a non-algebraically-closed field, ``nonconstant''
+alone is insufficient because the function field of \(D\) can contain a
+larger algebraic constant field. This is why transcendence is stated
+explicitly.
+
+For example, view \(\operatorname{Spec}\mathbb C[s]\) as an integral variety
+over \(\mathbb R\), take \(D=V(s)\), \(f=1/s\), and \(g=i/s\). The residue
+ratio \(i\) is outside \(\mathbb R\) but algebraic over it, and the
+nonconstant polynomial \(U^2+V^2\) evaluates to zero. This explicitly refutes
+the broader version of the statement.
+
+The same proof gives a weighted version. If
+\(v_D(f_i)=-w_i<0\), set \(f_{i,0}=(s^{w_i}f_i)|_D\). If the projective
+residue map
+
+\[
+D\dashrightarrow\mathbb P(w_1,\ldots,w_m),
+\qquad z\mapsto[f_{1,0}(z):\cdots:f_{m,0}(z)]
+\]
+
+has Zariski-dense image, then every polynomial in the \(f_i\) has pole order
+equal to the maximum weighted degree of its monomials. Indeed, after
+multiplication by the corresponding power of \(s\), its leading residue is
+the top weighted-homogeneous part evaluated on the residue map; density keeps
+that evaluation nonzero. Thus the proposed unequal-pole extension is a theorem
+under this precise density hypothesis.
 
 ### Application to the fixed-\(P\) plane slice
 
@@ -116,8 +144,9 @@ map forbids every nonconstant cancellation at once. The method is relevant to
 affine modifications, logarithmic geometry, rational coordinate charts, and
 polynomial inverse problems; it is not limited to Keller maps.
 
-A next theorem should treat unequal pole orders using weighted-homogeneous top
-parts and a residue map to a weighted projective space.
+The next problem is not the basic unequal-pole statement, which is settled by
+the weighted argument above, but finding geometric criteria that make the
+weighted residue map dominant in natural compactifications.
 
 ## 2. The collision variety is a factorial affine threefold
 
@@ -307,10 +336,10 @@ of its complete inverse frame. It connects global inversion to additive group
 actions, locally nilpotent derivations, affine geometry, and completeness of
 flat algebraic affine structures.
 
-The converse is false without additional path-lifting hypotheses: translation
-invariance of the image does not alone guarantee that a lifted trajectory
-cannot escape inside the finite completion. Determining hypotheses under which
-equality holds is a precise next problem.
+No converse is asserted. Translation invariance of the image alone does not
+obviously provide the continuation or path-lifting property needed to prevent
+a chosen inverse branch from escaping inside the finite completion. Determining
+hypotheses under which equality holds is a precise next problem.
 
 ## 4. Contact order and a Newton polygon for escape rates
 
@@ -319,15 +348,18 @@ the discriminant and \(2/3\) at its cuspidal edge. These can be extended.
 
 ### Theorem 4A (arbitrary contact at a smooth discriminant point)
 
-Let a target arc meet the smooth discriminant with finite intersection
+Let an analytic target arc lie off the discriminant for \(\epsilon\ne0\) and
+meet its smooth locus with finite intersection
 multiplicity
 
 \[
 k=\operatorname{ord}_\epsilon\Delta(\gamma(\epsilon)).
 \]
 
-Choose a projective root chart in which the leading coefficient is a unit. The
-two branches converging to the double boundary root satisfy
+Let \(t_0\) be the corresponding double root of the displayed \(t\)-cubic.
+This root is necessarily finite: in the binary homogenization the coefficient
+of \(T^2U\) is the nonzero constant \(-2\), so the root at infinity is never
+multiple. The two branches converging to \(t_0\) satisfy
 
 \[
 t_+-t_-\asymp\epsilon^{k/2},
@@ -342,10 +374,11 @@ square-root law is the case \(k=1\).
 
 ### Proof
 
-Near a split double root, the leading coefficient and the differences from the
-third root are units. The cubic discriminant is therefore a unit times
-\((t_+-t_-)^2\). At either root, the derivative is a unit times
-\(t_+-t_-\). The reconstruction identity \(x=2/K'(t)\) proves the result.
+In a local projective root coordinate, the factors measuring separation from
+the third root are units. The binary-cubic discriminant is therefore a unit
+times \((t_+-t_-)^2\). In the affine \(t\)-coordinate, at either of the two
+finite roots, \(K'(t_\pm)\) is a unit times \(t_+-t_-\). The chart-specific
+reconstruction identity \(x=2/K'(t)\) now proves the result.
 
 ### Theorem 4B (Newton polygon at the omitted cusp)
 
@@ -415,6 +448,19 @@ If the rescaled cubic in the equality case has a multiple root, the orders
 Newton--Puiseux algorithm. This is an explicit limitation, not an omitted
 genericity detail.
 
+The limitation is essential. For every \(N>3\), the family
+
+\[
+W^3-3\epsilon^2W+2\epsilon^3+\epsilon^N
+\]
+
+has the same \((\alpha,\beta)=(2,3)\) and degenerate leading cubic
+\((V-1)^2(V+2)\). One branch has derivative order \(2\), while the two
+branches near \(W=\epsilon\) have derivative order \((N+1)/2\). Thus those
+two inverse branches have arbitrarily large half-integral pole orders although
+\((\alpha,\beta)\) is fixed. Further Newton steps genuinely carry new
+information.
+
 ### Why this matters
 
 The result turns “failure at infinity” into a quantitative singularity
@@ -451,10 +497,20 @@ quadratic/cubic/quartic radical paradigm provably stops at generic degree five.
 
 ### Theorem 5B (finite-field fiber law at good reductions)
 
-Fix \(n\) and a member of the family defined over a number field. At reductions
-where the regular inverse cover remains geometrically connected with group
-\(S_n\), finite-field Chebotarev implies that the proportion of regular target
-points with exactly \(j\) rational inverse branches approaches
+Fix \(n\) and a member of the family defined over a number field. Choose a
+reduction over \(\mathbb F_q\) for which the regular Galois closure is
+geometrically connected with geometric group \(S_n\). Its arithmetic group is
+then also \(S_n\). If the regular target has dimension \(d\), finite-field
+Chebotarev implies, as \(m\to\infty\),
+
+\[
+\#\{y\in Y(\mathbb F_{q^m}):\#G^{-1}(y)(\mathbb F_{q^m})=j\}
+=\frac{\binom njD_{n-j}}{n!}q^{md}
++O(q^{m(d-1/2)}).
+\]
+
+Consequently the proportion of regular target points with exactly \(j\)
+rational inverse branches approaches
 
 \[
 \boxed{
@@ -462,8 +518,7 @@ points with exactly \(j\) rational inverse branches approaches
 }
 \]
 
-as the finite field grows, with a square-root error after fixing the model.
-Here
+along the extension fields \(\mathbb F_{q^m}\). Here
 
 \[
 D_m=m!\sum_{i=0}^m\frac{(-1)^i}{i!}
@@ -483,8 +538,8 @@ For \(n=3\) this recovers
 \Pr(3)=\frac16.
 \]
 
-For fixed \(j\) and \(n\to\infty\), the distribution tends the Poisson law of
-mean one:
+After first taking the field-size limit, the fixed-point distributions tend,
+for fixed \(j\) and \(n\to\infty\), to the Poisson law of mean one:
 
 \[
 \Pr(N=j)\longrightarrow\frac{e^{-1}}{j!}.
@@ -502,9 +557,10 @@ factorization, and monodromy software. It also shows why these maps are not
 cryptographic permutations: a large fraction of targets have no rational
 preimage, while others have several.
 
-The finite-field statement is asymptotic at good reductions, not an exact
-formula for every prime or every member. Exact counts require the geometry of
-the particular ordered-root space, as achieved for the cubic.
+The finite-field statement is conditional on the stated good-reduction and
+geometric-connectedness hypotheses and is not an exact formula for every
+prime or every member. Exact counts require the geometry of the particular
+ordered-root space, as achieved for the cubic.
 
 ## Real-world usefulness: a calibrated assessment
 
@@ -541,8 +597,9 @@ form that can be calculated exactly.
 
 These are research targets, not results.
 
-1. **Weighted residue theorem.** Extend Theorem 1 to functions of unequal pole
-   order using a dominant residue map to weighted projective space.
+1. **Weighted-residue density criterion.** The unequal-pole theorem is now
+   proved under a dense weighted-residue-map hypothesis. Find intrinsic
+   geometric conditions on a compactification that force this density.
 2. **Collision-complement topology.** Compute \(\pi_1(U)\), the integral
    cohomology ring, and the map \(\pi_1(U)\twoheadrightarrow S_3\). The class
    group calculation shows that Picard theory will not detect this topology.
@@ -558,13 +615,21 @@ These are research targets, not results.
 
 ## Verification and source boundary
 
-The accompanying test file `tests/test_five_directions.py` checks exactly:
+The accompanying files `tests/test_five_directions.py` and
+`tests/test_referee_audit.py` check exactly:
 
 - irreducibility factorizations for \(D\) and \(E\);
 - the depressed-cubic substitution;
 - the discriminant identity \(r^4(-4A^3-27B^2)\);
 - the `S_n` fixed-point probabilities for \(3\le n\le8\), including total mass
-  one and mean one.
+  one and mean one;
+- the counterexample showing why residue transcendence is necessary;
+- ordered-root collision reconstruction and independent finite-field counts;
+- the zero translation stabilizer of the omitted curve;
+- smooth and cuspidal escape normal forms, including degenerate equality
+  cases;
+- quantitative finite-field convergence at degree five; and
+- independent `S_n` specializations in degrees three through six.
 
 The divisor-valuation formalism is standard; see the
 [Stacks Project discussion of Weil divisors](https://stacks.math.columbia.edu/tag/0BE0).

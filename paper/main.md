@@ -610,7 +610,7 @@ $$
 t&1\\
 \lambda t(t+2)&-\lambda(2t+1)
 \end{pmatrix},qquad
-t\ne0,-1,quad\lambda\ne0,
+t\ne0,-1,\quad\lambda\ne0,
 $$
 
 whose determinant is $-3\lambda t(t+1)$.  This gives the displayed product

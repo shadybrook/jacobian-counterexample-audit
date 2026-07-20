@@ -63,11 +63,14 @@ overlaps and non-claims.
 - `paper/main.tex`: typeset LaTeX source.
 - `output/pdf/jacobian_counterexample_audit.pdf`: built paper, when present.
 - `src/verify.py`: exact symbolic certificate using SymPy.
-- `tests/test_map.py` and `tests/test_five_directions.py`: regression tests for
-  the main identities and the second research audit.
+- `tests/test_map.py`, `tests/test_five_directions.py`, and
+  `tests/test_referee_audit.py`: exact regression and adversarial tests for the
+  main identities and the five-direction research audit.
 - `CONSEQUENCES.md`: claim-by-claim ledger of implications and non-implications.
 - `FIVE_DIRECTIONS.md`: five new deep investigations, with general theorems,
   proofs, realistic applications, and explicit next conjectures.
+- `REFEREE_AUDIT_FIVE_RESULTS.md`: hidden-hypothesis audit, counterexamples to
+  overbroad formulations, independent checks, and confidence assessments.
 - `RESEARCH_FRONTIER.md`: proved new deductions, rejected routes, and the
   highest-value next theorem targets.
 - `PROMPT_AUDIT.md`: fulfillment check against the original project request.
